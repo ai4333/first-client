@@ -1,0 +1,16 @@
+<svg width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M41.0001 81C63.0915 81 81.0001 63.0914 81.0001 41C81.0001 18.9086 63.0915 1 41.0001 1C18.9087 1 1.00006 18.9086 1.00006 41C1.00006 63.0914 18.9087 81 41.0001 81Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M41.0001 74.1711C59.3198 74.1711 74.1708 59.32 74.1708 41.0003C74.1708 22.6806 59.3198 7.82959 41.0001 7.82959C22.6804 7.82959 7.82935 22.6806 7.82935 41.0003C7.82935 59.32 22.6804 74.1711 41.0001 74.1711Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M27.3892 22.687C34.1131 22.687 39.8425 22.687 44.5774 22.687C51.6797 22.687 54.9053 27.6205 54.9053 31.3726C54.9053 35.1247 52.4369 40.3616 44.216 40.3616C38.7355 40.3616 34.9788 40.3616 32.9458 40.3616" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M27.3892 59.7402C34.5297 59.7402 40.614 59.7402 45.6423 59.7402C53.1847 59.7402 56.6102 54.3222 56.6102 50.2016C56.6102 46.081 53.9887 40.3297 45.2586 40.3297C39.4385 40.3297 35.449 40.3297 33.2901 40.3297" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="39.0491" y="38.0728" width="4.87805" height="4.87805" fill="#2D4CFF"/>
+<rect x="10.2808" y="66.8657" width="3.87805" height="3.87805" fill="black" stroke="black"/>
+<rect x="64.9149" y="59.061" width="3.87805" height="3.87805" fill="black" stroke="black"/>
+<rect x="64.9149" y="8.32959" width="3.87805" height="3.87805" fill="black" stroke="black"/>
+<rect x="18.0853" y="14.1831" width="3.87805" height="3.87805" fill="black" stroke="black"/>
+<path d="M33.0907 59.6747V22.7393" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M36.4479 22.331V15.6343" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M36.4479 66.437V59.7402" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M44.0082 22.331V15.6343" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M44.0082 66.437V59.7402" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
