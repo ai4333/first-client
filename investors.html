@@ -6,17 +6,7 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Geetha Constructions",
-  "url": "https://www.geethaconstructions.com/",
-  "tickerSymbol": "PROJECTS",
-  "parentOrganization": {
-    "@type": "Organization",
-    "name": "Geetha Constructions",
-    "url": "https://www.hut8.com/"
-  },
-  "sameAs": [
-    "https://x.com/AmericanBTC",
-    "https://en.wikipedia.org/wiki/Bespoke_architecture"
-  ]
+  "url": "https://www.geethaconstructions.com/"
 }
 </script>
 <script data-taxi-reload>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -2499,68 +2489,93 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
   /* Base layout styles */
   .geetha_portfolio_layout {
-    display: grid;
-    grid-template-columns: 380px 1fr;
+    display: block;
     margin-top: calc(4.75rem + var(--_defaults---gap--7));
     height: calc(100vh - calc(4.75rem + var(--_defaults---gap--7)));
-    background-color: #0b0d19;
+    background-color: #f8f9fa;
     position: relative;
     overflow: hidden;
   }
   
+  /* Slide-in Sidebar (Left) */
   .geetha_portfolio_sidebar {
-    background: rgba(2, 10, 25, 0.95);
-    border-right: 1px solid rgba(213, 224, 255, 0.08);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 400px;
+    max-width: 100vw;
+    background: rgba(255, 255, 255, 0.95);
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
-    padding: 3rem 2rem;
-    z-index: 10;
-    overflow-y: auto;
+    padding: 2.5rem 2rem;
+    z-index: 40;
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .geetha_portfolio_sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .geetha_sidebar_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
   }
   
-  /* Force header to be transparent/dark on this page */
+  /* Force header to be transparent/light on this page */
   .header_block,
   .header_block_patch,
   .lyt-bg.w-variant-2943dd09-ff38-4814-6398-8cab3a8312e2 {
-    background-color: #0b0d19 !important;
-    box-shadow: 0 1px 0 rgba(213, 224, 255, 0.08) !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) !important;
   }
   .header .lyt {
     background-color: transparent !important;
   }
   
   .geetha_projects_list {
-    margin-top: 2rem;
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem;
+    overflow-y: auto;
+    padding-bottom: 2rem;
   }
   
   .geetha_project_item {
-    background: rgba(213, 224, 255, 0.02);
-    border: 1px solid rgba(213, 224, 255, 0.06);
-    border-radius: 0.25rem;
-    padding: 1.5rem;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.3s ease;
     position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
   }
   
   .geetha_project_item::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; bottom: 0; width: 3px;
-    background-color: #ff2c2f;
+    top: 0; left: 0; bottom: 0; width: 4px;
+    background-color: #0b3d16;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
   
   .geetha_project_item:hover, .geetha_project_item.active {
-    background: rgba(213, 224, 255, 0.06);
-    border-color: rgba(213, 224, 255, 0.2);
+    background: #f8f9fa;
+    border-color: rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
   }
   
   .geetha_project_item.active::before {
@@ -2572,7 +2587,7 @@ document.addEventListener('DOMContentLoaded', function() {
     font-size: 0.75rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #ff2c2f;
+    color: #0b3d16;
     margin-bottom: 0.5rem;
   }
   
@@ -2580,21 +2595,22 @@ document.addEventListener('DOMContentLoaded', function() {
     font-family: 'Styrene A LC', sans-serif;
     font-size: 1.25rem;
     font-weight: 500;
-    color: #ffffff;
-    margin-bottom: 0.35rem;
+    color: #000000;
+    margin-bottom: 0.25rem;
   }
   
   .geetha_project_item_loc {
     font-size: 0.85rem;
-    color: rgba(213, 224, 255, 0.5);
+    color: rgba(0, 0, 0, 0.6);
   }
   
   /* Viewport & Canvas container */
   .geetha_portfolio_map_container {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    position: relative;
-    background-color: #0b0d19;
+    background-color: #f8f9fa;
     overflow: hidden;
     z-index: 1;
   }
@@ -2607,18 +2623,18 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 1;
   }
   
-  /* Hide default MapLibre controls — we have our own HUD */
+  /* Hide default MapLibre controls */
   .maplibregl-ctrl-top-right,
   .maplibregl-ctrl-top-left,
   .maplibregl-ctrl-bottom-right,
   .maplibregl-ctrl-bottom-left { display: none !important; }
-  .maplibregl-ctrl-attrib { opacity: 0.3 !important; font-size: 0.5rem !important; }
+  .maplibregl-ctrl-attrib { opacity: 0.5 !important; font-size: 0.6rem !important; }
   
   /* Ensure MapLibre marker layer renders above canvas */
   .maplibregl-canvas-container { z-index: 1 !important; }
   .maplibregl-marker { z-index: 10 !important; }
   
-  /* Sci-fi Marker / Pins — rendered as MapLibre marker elements */
+  /* Marker / Pins */
   .geetha_map_pin {
     width: 44px;
     height: 44px;
@@ -2627,39 +2643,29 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 10;
   }
   
-  /* Bounding crosshair box around pins (inspired by Hubtown) */
   .geetha_pin_box {
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(213, 224, 255, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     position: relative;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
   }
   
   .geetha_map_pin:hover .geetha_pin_box,
   .geetha_map_pin.active .geetha_pin_box {
-    border-color: #ff2c2f;
-    box-shadow: 0 0 20px rgba(255, 44, 47, 0.3);
+    border-color: #0b3d16;
+    box-shadow: 0 0 15px rgba(11, 61, 22, 0.15);
     transform: scale(1.1);
+    background: rgba(255, 255, 255, 1);
   }
   
-  /* Sci-fi corners */
-  .pin_corner {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-  }
-  .pin_corner_tl { top: -1px; left: -1px; border-top: 2px solid #ff2c2f; border-left: 2px solid #ff2c2f; }
-  .pin_corner_tr { top: -1px; right: -1px; border-top: 2px solid #ff2c2f; border-right: 2px solid #ff2c2f; }
-  .pin_corner_bl { bottom: -1px; left: -1px; border-bottom: 2px solid #ff2c2f; border-left: 2px solid #ff2c2f; }
-  .pin_corner_br { bottom: -1px; right: -1px; border-bottom: 2px solid #ff2c2f; border-right: 2px solid #ff2c2f; }
-  
-  /* Inner dot */
   .pin_dot {
     position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: #ff2c2f;
+    width: 12px;
+    height: 12px;
+    background-color: #0b3d16;
     border-radius: 50%;
     top: 50%;
     left: 50%;
@@ -2668,23 +2674,24 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   .geetha_map_pin.active .pin_dot {
-    background-color: #ffffff;
-    box-shadow: 0 0 15px #ffffff;
+    background-color: #000000;
   }
   
-  /* Text tag on top of pins */
   .pin_tag {
     position: absolute;
     bottom: calc(100% + 8px);
     left: 50%;
     transform: translateX(-50%);
-    font-family: monospace;
-    font-size: 0.65rem;
-    background: rgba(2, 10, 25, 0.9);
-    border: 1px solid rgba(213, 224, 255, 0.3);
-    padding: 3px 6px;
-    color: rgba(213, 224, 255, 0.85);
-    letter-spacing: 0.1em;
+    font-family: 'Styrene A LC', sans-serif;
+    font-weight: 500;
+    font-size: 0.75rem;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 4px 8px;
+    color: #000000;
+    letter-spacing: 0.05em;
     white-space: nowrap;
     text-transform: uppercase;
     opacity: 0;
@@ -2698,109 +2705,92 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translateX(-50%) translateY(-2px);
   }
   
+  /* Bottom HUD Layout */
+  .geetha_bottom_hud {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 30;
+    pointer-events: none;
+  }
+
+  .geetha_bottom_hud > * {
+    pointer-events: auto;
+  }
+
   /* Tech HUD overlays */
   .geetha_coords_hud {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    background: rgba(2, 10, 25, 0.85);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(213, 224, 255, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0.25rem;
     padding: 0.6rem 1.2rem;
     font-family: monospace;
     font-size: 0.75rem;
-    color: #ff2c2f;
+    color: #0b3d16;
     letter-spacing: 0.15em;
-    z-index: 30;
-    pointer-events: none;
     text-transform: uppercase;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   }
   
-  /* Compass overlay */
-  .geetha_compass_hud {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-    width: 80px;
-    height: 80px;
-    z-index: 30;
-    pointer-events: none;
-  }
-  
-  .geetha_compass_ring {
-    position: absolute;
-    inset: 0;
-    border: 1.5px dashed rgba(213, 224, 255, 0.2);
-    border-radius: 50%;
-    transition: transform 0.1s linear;
-  }
-  
-  .geetha_compass_dial {
-    position: absolute;
-    inset: 10px;
-    border: 1px solid rgba(213, 224, 255, 0.1);
-    border-radius: 50%;
-  }
-  
-  .geetha_compass_needle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 2px;
-    height: 30px;
-    background: linear-gradient(to top, transparent, #ff2c2f);
-    transform-origin: bottom center;
-    transform: translate(-50%, -100%) rotate(0deg);
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  
-  .geetha_compass_label {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: monospace;
-    font-size: 0.55rem;
-    color: rgba(213, 224, 255, 0.7);
+  /* Open Projects Button */
+  .geetha_open_projects_btn {
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 0.8rem 1.5rem;
+    font-family: 'Styrene A LC', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
     letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
   }
-  
+
+  .geetha_open_projects_btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+  }
+
   /* Zoom Controls Widget */
   .geetha_zoom_hud {
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    z-index: 30;
-    background: rgba(2, 10, 25, 0.85);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(213, 224, 255, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0.25rem;
-    padding: 0.6rem;
+    padding: 0.4rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   }
   
   .geetha_zoom_scale {
     font-family: monospace;
     font-size: 0.75rem;
-    color: rgba(213, 224, 255, 0.7);
-    min-width: 90px;
+    color: rgba(0, 0, 0, 0.6);
+    min-width: 80px;
+    text-align: center;
     letter-spacing: 0.05em;
   }
   
   .geetha_zoom_btn {
-    background: rgba(213, 224, 255, 0.05);
-    border: 1px solid rgba(213, 224, 255, 0.15);
-    color: #ffffff;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid transparent;
+    color: #000000;
     width: 28px;
     height: 28px;
-    border-radius: 0.25rem;
+    border-radius: 0.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2811,32 +2801,23 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   .geetha_zoom_btn:hover {
-    background: #ff2c2f;
-    border-color: #ff2c2f;
-    color: #0b0d19;
+    background: #0b3d16;
+    color: #ffffff;
   }
   
-  /* Premium Specification Panel (Slide-Over, inspired by Hubtown) */
+  /* Project Details Panel (Inside Sidebar) */
   .geetha_project_details_panel {
     position: absolute;
-    top: 2rem;
-    right: 2rem;
-    bottom: 2rem;
-    width: 440px;
-    background: rgba(2, 10, 25, 0.92);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(213, 224, 255, 0.12);
-    border-radius: 0.25rem;
-    z-index: 20;
-    opacity: 0;
-    transform: translateX(50px);
-    pointer-events: none;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    overflow: hidden;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #ffffff;
+    z-index: 50;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
   }
   
   .geetha_project_details_panel.active {
@@ -2848,53 +2829,62 @@ document.addEventListener('DOMContentLoaded', function() {
   .geetha_panel_header {
     position: relative;
     width: 100%;
-    aspect-ratio: 16/10;
+    aspect-ratio: 16/11;
     overflow: hidden;
-    border-bottom: 1px solid rgba(213, 224, 255, 0.08);
   }
   
   .geetha_panel_img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: saturate(0.9) contrast(1.05);
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
-  .geetha_project_details_panel.active .geetha_panel_img {
-    transform: scale(1.03);
-  }
-  
-  .geetha_panel_close_btn {
+  .geetha_panel_back_btn {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(2, 10, 25, 0.8);
-    color: #ffffff;
-    border: 1px solid rgba(213, 224, 255, 0.15);
-    width: 32px;
-    height: 32px;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #000000;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background 0.3s;
+  }
+  
+  .geetha_panel_back_btn:hover {
+    background: #ffffff;
+  }
+
+  .geetha_panel_close_btn {
+    background: transparent;
+    color: #000000;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 1.25rem;
-    z-index: 10;
+    font-size: 1.5rem;
     transition: all 0.3s ease;
   }
   
   .geetha_panel_close_btn:hover {
-    background: #ff2c2f;
-    border-color: #ff2c2f;
-    color: #0b0d19;
+    background: #f0f0f0;
     transform: rotate(90deg);
   }
   
   .geetha_panel_body {
     padding: 2rem;
     flex: 1;
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
   }
@@ -2904,30 +2894,30 @@ document.addEventListener('DOMContentLoaded', function() {
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
     margin-top: 1.5rem;
-    border-top: 1px solid rgba(213, 224, 255, 0.08);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
     padding-top: 1.5rem;
   }
   
   .geetha_panel_meta_item_label {
     font-size: 0.7rem;
     text-transform: uppercase;
-    color: rgba(213, 224, 255, 0.4);
+    color: rgba(0, 0, 0, 0.5);
     letter-spacing: 0.15em;
     margin-bottom: 0.25rem;
   }
   
   .geetha_panel_meta_item_val {
-    color: #ffffff;
+    color: #000000;
     font-size: 0.9rem;
     font-weight: 500;
   }
   
   .geetha_panel_cta_btn {
-    margin-top: auto;
+    margin-top: 2rem;
     width: 100%;
     padding: 1rem;
-    background: transparent;
-    border: 1px solid rgba(213, 224, 255, 0.2);
+    background: #000000;
+    border: none;
     color: #ffffff;
     font-family: monospace;
     font-size: 0.8rem;
@@ -2938,101 +2928,68 @@ document.addEventListener('DOMContentLoaded', function() {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    border-radius: 0.25rem;
   }
   
   .geetha_panel_cta_btn:hover {
-    background: #ff2c2f;
-    color: #0b0d19;
-    border-color: #ff2c2f;
+    background: #0b3d16;
   }
   
-  /* Disable body scroll on desktop map */
-  @media (min-width: 768px) {
-    html, body {
-      overflow: hidden !important;
-      height: 100vh !important;
-      width: 100vw !important;
-    }
-    footer[data-module="footer"],
-    .cookies_wrapper {
-      display: none !important;
-    }
-  }
-  
-  /* Tablets and Mobile (Header in mobile mode) */
-  @media (max-width: 991px) {
-    .geetha_portfolio_layout {
-      margin-top: 4rem;
-      height: calc(100vh - 4rem);
-    }
-  }
-
   /* Responsiveness */
   @media (max-width: 767px) {
     .geetha_portfolio_layout {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto 1fr;
       margin-top: 4rem;
       height: calc(100vh - 4rem);
     }
-    .geetha_portfolio_sidebar {
-      padding: 1.25rem;
-      border-right: none;
-      border-bottom: 1px solid rgba(213, 224, 255, 0.08);
-      overflow-x: auto;
-      overflow-y: hidden;
-    }
-    .geetha_portfolio_sidebar h2,
-    .geetha_portfolio_sidebar p {
-      display: none;
-    }
-    .geetha_projects_list {
-      margin-top: 0;
-      flex-direction: row;
+    .geetha_bottom_hud {
+      padding: 1rem;
+      flex-wrap: wrap;
       gap: 1rem;
+      justify-content: center;
     }
-    .geetha_project_item {
-      margin-bottom: 0;
-      padding: 0.75rem 1.25rem;
-      flex-shrink: 0;
-      white-space: nowrap;
+    .geetha_open_projects_btn {
+      order: -1;
+      width: 100%;
     }
-    .geetha_project_item::before {
-      top: auto; left: 0; right: 0; bottom: 0;
-      width: auto; height: 3px;
-    }
-    .geetha_project_details_panel {
-      position: absolute;
-      top: auto;
-      left: 1rem;
-      right: 1rem;
-      bottom: 1rem;
-      width: auto;
-      height: 60%;
-      transform: translateY(50px);
-    }
-    .geetha_project_details_panel.active {
-      transform: translateY(0);
-    }
-    .geetha_coords_hud {
-      top: 1rem;
-      right: 1rem;
-      font-size: 0.65rem;
-      padding: 0.4rem 0.8rem;
-    }
-    .geetha_compass_hud {
-      display: none;
+    .geetha_portfolio_sidebar {
+      width: 100vw;
     }
   }
 </style>
 </div>
 
 <div class="geetha_portfolio_layout">
-  <!-- Left Panel: Sidebar listing -->
-  <div class="geetha_portfolio_sidebar">
-    <h2 class="f4 mb2" style="color: #ffffff; letter-spacing: 0.1em; text-transform: uppercase;">Our <span class="ink-accent" style="color: #ff2c2f;">Portfolio</span></h2>
-    <p class="f1 mb6" style="color: rgba(213,224,255,0.5); line-height: 1.5; font-size: 0.85rem;">Click on a project to fly the camera to its precise coordinate point and review design specifications.</p>
+  <!-- Full Screen Map Container -->
+  <div class="geetha_portfolio_map_container" id="geetha-map-viewport">
+    <!-- MapLibre GL Map -->
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+    <script data-taxi-reload src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+    <div id="geetha-maplibre-map"></div>
+    
+    <!-- Bottom HUD controls -->
+    <div class="geetha_bottom_hud">
+      <!-- Coordinates HUD -->
+      <div id="geetha-coords-hud" class="geetha_coords_hud">COORD: 13.1200° N, 77.6800° E</div>
+      
+      <!-- Open Project List Button -->
+      <button id="geetha-open-projects-btn" class="geetha_open_projects_btn">OPEN PROJECT LIST</button>
+
+      <!-- Zoom HUD controls -->
+      <div class="geetha_zoom_hud">
+        <button id="geetha-zoom-out" class="geetha_zoom_btn">&minus;</button>
+        <div id="geetha-zoom-scale" class="geetha_zoom_scale">SCALE: 0.85X</div>
+        <button id="geetha-zoom-in" class="geetha_zoom_btn">&plus;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Left Sidebar (Slide-in) -->
+  <div id="geetha-left-sidebar" class="geetha_portfolio_sidebar">
+    <div class="geetha_sidebar_header">
+      <h2 class="f4" style="color: #000000; letter-spacing: 0.1em; text-transform: uppercase;">Our <span class="ink-accent" style="color: #0b3d16;">Portfolio</span></h2>
+      <div id="geetha-sidebar-close" class="geetha_panel_close_btn">&times;</div>
+    </div>
+    <p class="f1 mb6" style="color: rgba(0,0,0,0.6); line-height: 1.5; font-size: 0.85rem;">Click on a project to fly the camera to its precise coordinate point and review design specifications.</p>
     
     <div class="geetha_projects_list">
       <div class="geetha_project_item" data-project="meadows">
@@ -3059,44 +3016,17 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="geetha_project_item_loc">Nandi Hills, Bangalore</div>
       </div>
     </div>
-  </div>
-  
-  <!-- Right Panel: Viewport map -->
-  <div class="geetha_portfolio_map_container" id="geetha-map-viewport">
-    
-    <!-- MapLibre GL Map -->
-    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
-    <script data-taxi-reload src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-    <div id="geetha-maplibre-map"></div>
-    
-    <!-- Coordinates HUD -->
-    <div id="geetha-coords-hud" class="geetha_coords_hud">COORD: 13.1200° N, 77.6800° E</div>
-    
-    <!-- Zoom HUD controls -->
-    <div class="geetha_zoom_hud">
-      <div id="geetha-zoom-scale" class="geetha_zoom_scale">SCALE: 0.85X</div>
-      <button id="geetha-zoom-out" class="geetha_zoom_btn">&minus;</button>
-      <button id="geetha-zoom-in" class="geetha_zoom_btn">&plus;</button>
-    </div>
-    
-    <!-- Compass HUD -->
-    <div class="geetha_compass_hud">
-      <div id="geetha-compass-ring" class="geetha_compass_ring"></div>
-      <div class="geetha_compass_dial"></div>
-      <div id="geetha-compass-needle" class="geetha_compass_needle"></div>
-      <div class="geetha_compass_label">N</div>
-    </div>
-    
-    <!-- Spec details side panel -->
+
+    <!-- Spec details inside the sidebar -->
     <div id="geetha-project-panel" class="geetha_project_details_panel">
       <div class="geetha_panel_header">
+        <button id="geetha-panel-back" class="geetha_panel_back_btn">&larr; Back to List</button>
         <img id="geetha-panel-img" class="geetha_panel_img" src="" alt="Project Photo" />
-        <div id="geetha-panel-close" class="geetha_panel_close_btn">&times;</div>
       </div>
       <div class="geetha_panel_body">
-        <div id="geetha-panel-step" style="font-family: monospace; font-size: 0.75rem; letter-spacing: 0.15em; color: #ff2c2f; text-transform: uppercase; margin-bottom: 0.5rem;">01 / ACTIVE</div>
-        <h3 id="geetha-panel-title" class="f4 mb4" style="color: #ffffff; font-weight: 700; letter-spacing: -0.01em;">Geetha Meadows</h3>
-        <p id="geetha-panel-desc" class="f1 mb6" style="color: rgba(213,224,255,0.6); line-height: 1.5; font-size: 0.9rem;">Premium bespoke villas featuring custom modernist structural integrity, smart automation systems, and architectural excellence.</p>
+        <div id="geetha-panel-step" style="font-family: var(--font-primary, sans-serif); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; color: #0b3d16; text-transform: uppercase; margin-bottom: 0.5rem;">01 / ACTIVE</div>
+        <h3 id="geetha-panel-title" class="f4 mb4" style="color: #000000; font-weight: 700; letter-spacing: -0.01em;">Geetha Meadows</h3>
+        <p id="geetha-panel-desc" class="f1 mb6" style="color: rgba(0,0,0,0.7); line-height: 1.5; font-size: 0.9rem;">Premium bespoke villas featuring custom modernist structural integrity, smart automation systems, and architectural excellence.</p>
         
         <div class="geetha_panel_meta_row">
           <div>
@@ -3118,7 +3048,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         
         <button id="geetha-panel-cta" class="geetha_panel_cta_btn">
-          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           Request Site Blueprints
         </button>
       </div>
@@ -3205,21 +3134,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function initMapLibre() {
     const panel = document.getElementById('geetha-project-panel');
-    const panelClose = document.getElementById('geetha-panel-close');
+    const panelBack = document.getElementById('geetha-panel-back');
+    const sidebar = document.getElementById('geetha-left-sidebar');
+    const sidebarClose = document.getElementById('geetha-sidebar-close');
+    const openProjectsBtn = document.getElementById('geetha-open-projects-btn');
     const sidebarItems = document.querySelectorAll('.geetha_project_item');
     const coordsHud = document.getElementById('geetha-coords-hud');
     const zoomScaleText = document.getElementById('geetha-zoom-scale');
     const zoomInBtn = document.getElementById('geetha-zoom-in');
     const zoomOutBtn = document.getElementById('geetha-zoom-out');
-    const compassNeedle = document.getElementById('geetha-compass-needle');
-    const compassRing = document.getElementById('geetha-compass-ring');
     
     if (!panel) return;
+
+    // Sidebar Toggles
+    const openSidebar = () => {
+      sidebar.classList.add('is-open');
+    };
+    
+    const closeSidebar = () => {
+      sidebar.classList.remove('is-open');
+      // Also close the details panel when the sidebar closes completely
+      setTimeout(() => {
+        panel.classList.remove('active');
+        Object.keys(markers).forEach(function(k) {
+          markers[k].element.classList.remove('active');
+        });
+        sidebarItems.forEach(function(item) { item.classList.remove('active'); });
+      }, 500);
+      
+      if (window.GCAudioController) {
+        window.GCAudioController.playFromPool(window.GCAudioController.clickPool);
+      }
+    };
+
+    openProjectsBtn.addEventListener('click', openSidebar);
+    sidebarClose.addEventListener('click', closeSidebar);
 
     // Initialize MapLibre GL
     map = new maplibregl.Map({
       container: 'geetha-maplibre-map',
-      style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+      style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
       center: [77.59, 12.97], // Bangalore center
       zoom: 9.5,
       pitch: 0,
@@ -3234,36 +3188,36 @@ document.addEventListener('DOMContentLoaded', function() {
     map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
 
     map.on('load', function() {
-      // Dynamic dark navy theme mapping to match Geetha's visual identity
+      // Dynamic light theme mapping to match Geetha's visual identity
       const style = map.getStyle();
       if (style && style.layers) {
         style.layers.forEach(function(layer) {
           try {
             if (layer.id === 'background') {
-              map.setPaintProperty(layer.id, 'background-color', '#0b0d19');
+              map.setPaintProperty(layer.id, 'background-color', '#f8f9fa');
             } else if (layer.id === 'water' || layer.id === 'waterway' || layer.id === 'water_shadow') {
               if (layer.paint) {
-                if (layer.paint['fill-color']) map.setPaintProperty(layer.id, 'fill-color', '#171b33');
-                if (layer.paint['line-color']) map.setPaintProperty(layer.id, 'line-color', '#171b33');
+                if (layer.paint['fill-color']) map.setPaintProperty(layer.id, 'fill-color', '#dbeafe');
+                if (layer.paint['line-color']) map.setPaintProperty(layer.id, 'line-color', '#dbeafe');
               }
             } else if (layer.id === 'landcover' || layer.id === 'landuse' || layer.id.startsWith('landuse_') || layer.id.startsWith('park_')) {
               if (layer.paint && layer.paint['fill-color']) {
-                map.setPaintProperty(layer.id, 'fill-color', '#0d1024');
+                map.setPaintProperty(layer.id, 'fill-color', '#e2e8f0');
               }
             } else if (layer.id.includes('road') || layer.id.includes('bridge') || layer.id.includes('tunnel') || layer.id.includes('rail')) {
               if (layer.paint) {
                 if (layer.paint['line-color']) {
-                  map.setPaintProperty(layer.id, 'line-color', '#192042');
+                  map.setPaintProperty(layer.id, 'line-color', '#ffffff');
                 }
               }
             } else if (layer.id.startsWith('building')) {
               if (layer.paint) {
-                if (layer.paint['fill-color']) map.setPaintProperty(layer.id, 'fill-color', '#111633');
-                if (layer.paint['fill-extrusion-color']) map.setPaintProperty(layer.id, 'fill-extrusion-color', '#111633');
+                if (layer.paint['fill-color']) map.setPaintProperty(layer.id, 'fill-color', '#cbd5e1');
+                if (layer.paint['fill-extrusion-color']) map.setPaintProperty(layer.id, 'fill-extrusion-color', '#cbd5e1');
               }
             } else if (layer.layout && layer.layout['text-field']) {
               if (layer.paint && layer.paint['text-color']) {
-                map.setPaintProperty(layer.id, 'text-color', 'rgba(255, 255, 255, 0.45)');
+                map.setPaintProperty(layer.id, 'text-color', 'rgba(0, 0, 0, 0.65)');
               }
             }
           } catch (err) {
@@ -3296,11 +3250,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         markers[key] = { marker: marker, element: el };
       });
-
-      // Auto-select first project after a brief delay
-      setTimeout(function() {
-        selectProject('meadows');
-      }, 800);
     });
 
     // Update HUD on map move
@@ -3313,11 +3262,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Update zoom scale
       zoomScaleText.textContent = 'SCALE: ' + zoom.toFixed(2) + 'X';
-      
-      // Update compass
-      const bearing = map.getBearing();
-      compassNeedle.style.transform = 'translate(-50%, -100%) rotate(' + bearing + 'deg)';
-      compassRing.style.transform = 'rotate(' + (-bearing) + 'deg)';
     });
 
     // Update coords on mouse move
@@ -3325,8 +3269,8 @@ document.addEventListener('DOMContentLoaded', function() {
       coordsHud.textContent = 'COORD: ' + e.lngLat.lat.toFixed(4) + '° N, ' + e.lngLat.lng.toFixed(4) + '° E';
     });
 
-    // Close panel
-    const closePanel = function() {
+    // Back from detail panel to list
+    const backToList = function() {
       panel.classList.remove('active');
       Object.keys(markers).forEach(function(k) {
         markers[k].element.classList.remove('active');
@@ -3337,7 +3281,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.GCAudioController.playFromPool(window.GCAudioController.clickPool);
       }
     };
-    panelClose.addEventListener('click', closePanel);
+    panelBack.addEventListener('click', backToList);
 
     // Open detail panel
     const openProjectDetails = function(key) {
@@ -3353,6 +3297,8 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('geetha-panel-coords').textContent = data.coords;
       document.getElementById('geetha-panel-handover').textContent = data.handover;
       
+      // Ensure the sidebar is open
+      openSidebar();
       panel.classList.add('active');
       
       if (window.GCAudioController && !window.GCAudioController.isMuted) {
@@ -3401,15 +3347,12 @@ document.addEventListener('DOMContentLoaded', function() {
         essential: true,
         curve: 1.42,
         easing: function(t) {
-          // Custom easing: smooth ease-in-out
           return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
         }
       });
       
-      // Delay detail panel reveal to sync with flyTo arrival
-      setTimeout(function() {
-        openProjectDetails(key);
-      }, 1200);
+      // Detail panel reveal syncs instantly to make it slide out smoothly
+      openProjectDetails(key);
     };
 
     // Zoom controls
@@ -3445,10 +3388,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Click empty map area to close panel
     map.on('click', function(e) {
-      // Only close if not clicking on a marker
       const features = map.queryRenderedFeatures(e.point);
       if (features.length === 0 || !e.originalEvent.target.closest('.geetha_map_pin')) {
-        closePanel();
+        closeSidebar();
       }
     });
   }
@@ -3468,7 +3410,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-</main><footer data-module="footer" padding-top="Small" padding-bottom="" max-width="" data-wf--footer--style-theme="invert" class="lyt w-variant-d9d62d56-258d-64fb-73a1-a04c40ebeb3d"><div bg-type="Full" data-wf--background-lyt--color="primary" class="lyt-bg w-variant-f3e91557-9bc6-88c8-151f-0c8fefcd82a1"></div><div class="code w-embed"><style>
+</main><footer data-module="footer" padding-top="Small" padding-bottom="" max-width="" data-wf--footer--style-theme="base" class="lyt w-variant-d9d62d56-258d-64fb-73a1-a04c40ebeb3d"><div bg-type="Full" data-wf--background-lyt--color="primary" class="lyt-bg w-variant-f3e91557-9bc6-88c8-151f-0c8fefcd82a1"></div><div class="code w-embed"><style>
 @media (max-width: 991px) {
 .footer_nav_link.w--current {
 color: var(--_color-values---swatch--light);
