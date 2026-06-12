@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About | American Bitcoin Corp | ABTC</title>
+<link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2c0d_favicon.png"/>
+
+<style>
+@font-face{font-family:'Styrene A LC';src:url('https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2bd7_StyreneALC-Regular.otf') format('opentype');font-weight:400;font-display:swap;}
+@font-face{font-family:'Styrene A LC';src:url('https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2bd6_StyreneALC-Medium.otf') format('opentype');font-weight:500;font-display:swap;}
+@font-face{font-family:'Archivo';src:url('https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2be8_Archivo-Regular.ttf') format('truetype');font-weight:400;font-display:swap;}
+@font-face{font-family:'Archivo';src:url('https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2bd8_Archivo-Medium.ttf') format('truetype');font-weight:500;font-display:swap;}
+</style>
+
+<style>
+/* ===================== RESET & BASE ===================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Archivo',Arial,sans-serif;
+  font-weight:400;
+  background:#f5f6fc;
+  color:#0a0a0a;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===================== CSS VARS ===================== */
+:root{
+  --surface-primary:#f5f6fc;
+  --surface-secondary:#ffffff;
+  --navy-900:#0b0d19;
+  --navy:#171b33;
+  --dark:#0a0a0a;
+  --red:#ff2c2f;
+  --blue:#2d4cff;
+  --green:#9ec741;
+  --neutral-200:color-mix(in srgb,#0a0a0a 20%,#fff);
+
+  --f6:clamp(1.75rem,calc(1.75rem + 2.75*((100vw - 22.5rem)/(110 - 22.5))),4.5rem);
+  --f5:clamp(1.75rem,calc(1.75rem + 1.5*((100vw - 22.5rem)/(110 - 22.5))),3.25rem);
+  --f4:clamp(1.375rem,calc(1.375rem + 0.625*((100vw - 22.5rem)/(110 - 22.5))),2rem);
+  --f2:clamp(1.1875rem,calc(1.1875rem + 0.1875*((100vw - 22.5rem)/(110 - 22.5))),1.375rem);
+  --f0:0.96875rem;
+
+  --gap-5:clamp(0.75rem,calc(0.75rem + 0.25*((100vw - 22.5rem)/(110 - 22.5))),1rem);
+  --gap-6:clamp(1.25rem,calc(1.25rem + 0.25*((100vw - 22.5rem)/(110 - 22.5))),1.5rem);
+  --gap-7:clamp(1.5rem,calc(1.5rem + 0.5*((100vw - 22.5rem)/(110 - 22.5))),2rem);
+  --gap-8:clamp(4rem,calc(4rem + 1.5*((100vw - 22.5rem)/(110 - 22.5))),5.5rem);
+  --gap-9:clamp(3rem,calc(3rem + 1*((100vw - 22.5rem)/(110 - 22.5))),4rem);
+  --gap-11:clamp(5.5rem,calc(5.5rem + 2.5*((100vw - 22.5rem)/(110 - 22.5))),8rem);
+  --gap-12:clamp(7.5rem,calc(7.5rem + 5*((100vw - 22.5rem)/(110 - 22.5))),12.5rem);
+
+  --radius:clamp(1.25rem,calc(1.25rem + 0.25*((100vw - 22.5rem)/(110 - 22.5))),1.5rem);
+  --max-w:110rem;
+  --h-pad:var(--gap-7);
+}
+
+/* ===================== TYPE ===================== */
+h1,h2,h3,h4,h5,h6{
+  font-family:'Styrene A LC',Arial,sans-serif;
+  font-weight:500;
+  line-height:1.05;
+  text-transform:uppercase;
+  color:var(--navy);
+}
+.f6{font-size:var(--f6);}
+.f5{font-size:var(--f5);}
+.f4{font-size:var(--f4);}
+.f2{font-size:var(--f2);line-height:1.55;}
+.f0{font-size:var(--f0);}
+.dark-section h1,.dark-section h2,.dark-section h3,.dark-section h4{color:#ffffff;}
+.dark-section p,.dark-section span,.dark-section div{color:rgba(255,255,255,0.75);}
+.dark-section .section_label{color:rgba(255,255,255,0.4);}
+.ink-accent{color:var(--red);}
+em{font-style:italic;color:var(--red);}
+p{line-height:1.65;color:#3a3a3a;}
+
+.section_label{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:var(--f0);
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:rgba(10,10,10,0.4);
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+}
+.section_label::before{
+  content:'';
+  display:inline-block;
+  width:0.5rem;
+  height:0.5rem;
+  background:var(--blue);
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+/* ===================== LAYOUT ===================== */
+.page{position:relative;overflow:hidden;}
+.lyt{
+  max-width:var(--max-w);
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:var(--h-pad);
+  padding-right:var(--h-pad);
+}
+
+/* ===================== PAGE TRANSITION ===================== */
+.page_transition_container{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:repeat(7,1fr);
+  pointer-events:none;
+}
+.page_transition_container .tile{
+  background:var(--red);
+  transform:scaleY(1);
+  transform-origin:top;
+}
+
+/* ===================== HEADER ===================== */
+.header{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:999;
+  pointer-events:none;
+}
+.header_block{
+  pointer-events:all;
+  background:#ffffff;
+  padding:clamp(1rem,calc(1rem + 0.5*((100vw - 22.5rem)/87.5)),1.375rem) var(--h-pad);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+  border-radius:0 0 var(--radius) 0;
+  gap:var(--gap-7);
+}
+.header_brand_group{
+  display:flex;
+  align-items:center;
+  gap:var(--gap-6);
+  flex-shrink:0;
+}
+.header_logo{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+  flex-shrink:0;
+}
+.header_logo .logo-desktop{display:block;}
+.header_logo .logo-mobile{display:none;}
+.header_mark{
+  width:0.5rem;
+  height:0.5rem;
+  background:var(--red);
+  flex-shrink:0;
+}
+.header_stock{
+  display:flex;
+  flex-direction:column;
+  gap:0.1rem;
+}
+.header_stock_price{
+  font-family:'Styrene A LC',Arial,sans-serif;
+  font-weight:500;
+  font-size:var(--f0);
+  color:var(--navy);
+  line-height:1.1;
+}
+.header_stock_update{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:0.6875rem;
+  color:rgba(10,10,10,0.4);
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+.header_nav{
+  display:flex;
+  align-items:center;
+  gap:0;
+  margin-left:auto;
+}
+.header_nav_link{
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  text-decoration:none;
+  padding:0.5rem var(--gap-5);
+  position:relative;
+  overflow:hidden;
+}
+.header_nav_link_mark{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:0.625rem;
+  font-weight:500;
+  color:rgba(10,10,10,0.3);
+  letter-spacing:0.05em;
+  line-height:1;
+  align-self:flex-start;
+  padding-top:0.05rem;
+}
+.header_nav_link_text{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:var(--f0);
+  font-weight:500;
+  color:var(--navy);
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+  white-space:nowrap;
+  position:relative;
+  z-index:2;
+}
+.header_nav_link_patch{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:2px;
+  background:var(--red);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.4s cubic-bezier(.19,1,.22,1);
+}
+.header_nav_link:hover .header_nav_link_patch{transform:scaleX(1);}
+.header_nav_link:hover .header_nav_link_text{color:var(--red);}
+.header_nav_link.w--current .header_nav_link_text{color:var(--red);}
+.header_nav_link.w--current .header_nav_link_patch{transform:scaleX(1);}
+.header_block_patch{
+  position:absolute;
+  width:var(--radius);
+  height:var(--radius);
+  background:var(--surface-primary);
+  top:0;right:0;
+  pointer-events:none;
+}
+.header_block_patch.is--left{
+  top:auto;right:auto;
+  bottom:0;left:0;
+}
+.header_hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:0.5rem;
+  flex-shrink:0;
+}
+.header_hamburger span{
+  display:block;
+  width:24px;
+  height:2px;
+  background:var(--navy);
+  transition:all 0.3s;
+}
+.header_nav_backdrop{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(11,13,25,0.5);
+  z-index:998;
+}
+
+/* ===================== LINK / BUTTON ===================== */
+.link{
+  display:inline-flex;
+  background:var(--navy);
+  color:#fff;
+  text-decoration:none;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  border:none;
+  flex-shrink:0;
+}
+.link_content{
+  display:inline-flex;
+  align-items:center;
+  justify-content:space-between;
+  height:3.25rem;
+  padding-left:1.125rem;
+  padding-right:0.5rem;
+  gap:var(--gap-6);
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:var(--f0);
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  position:relative;
+  z-index:2;
+  white-space:nowrap;
+}
+.link_text{
+  position:relative;
+  z-index:2;
+  transition:transform 0.7s cubic-bezier(.25,.46,.45,.94);
+}
+.link_icon_wrapper{
+  width:2rem;height:2rem;
+  background:var(--surface-primary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  position:relative;
+  z-index:2;
+  transition:transform 0.2s;
+}
+.link_icon_wrapper svg{
+  width:0.675rem;
+  height:0.675rem;
+  color:var(--navy);
+  transition:transform 0.2s;
+}
+.link_background_cover{
+  position:absolute;
+  inset:0;
+  background:var(--red);
+  clip-path:inset(100% 0% 0% 0%);
+  transition:clip-path 0.7s cubic-bezier(.19,1,.22,1);
+  z-index:1;
+}
+.link:hover .link_background_cover{clip-path:inset(0% 0% 0% 0%);}
+.link:hover .link_icon_wrapper{transform:scale(0.9);}
+.link:hover .link_icon_wrapper svg{transform:scale(0.875);}
+.link.light{background:#ffffff;color:var(--navy);}
+.link.light .link_icon_wrapper{background:var(--surface-primary);}
+.link.outline{background:transparent;color:#ffffff;border:1px solid rgba(255,255,255,0.2);}
+.link.outline .link_icon_wrapper{background:rgba(255,255,255,0.1);}
+.link.outline .link_icon_wrapper svg{color:#fff;}
+
+/* ===================== ABOUT HERO ===================== */
+.about_hero{
+  position:relative;
+  min-height:100vh;
+  background:var(--navy-900);
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  padding-top:calc(clamp(1rem,calc(1rem + 0.5*((100vw - 22.5rem)/87.5)),1.375rem)*2 + 3.5rem);
+}
+.about_hero_video{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+.about_hero_video video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.about_hero_gradient{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(11,13,25,0.3) 0%,
+    rgba(11,13,25,0.1) 40%,
+    rgba(11,13,25,0.85) 80%,
+    #f5f6fc 100%
+  );
+  z-index:1;
+}
+.about_hero_content{
+  position:relative;
+  z-index:2;
+  padding-bottom:var(--gap-12);
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:var(--gap-7);
+  max-width:60rem;
+}
+.about_hero_content h1{
+  color:#ffffff;
+  line-height:1.0;
+  letter-spacing:-0.01em;
+}
+.about_hero_content h1 em{
+  font-style:italic;
+  color:var(--red);
+}
+.about_hero_content .f2{
+  color:rgba(255,255,255,0.75);
+  max-width:44rem;
+}
+/* Decorative patches */
+.about_hero_patch{
+  position:absolute;
+  pointer-events:none;
+  z-index:3;
+}
+.about_hero_patch.p1{
+  top:calc(clamp(1rem,calc(1rem + 0.5*((100vw - 22.5rem)/87.5)),1.375rem)*2 + 3.5rem + var(--gap-8));
+  left:var(--h-pad);
+  width:clamp(0.75rem,1.5vw,1.25rem);
+  height:clamp(0.75rem,1.5vw,1.25rem);
+  background:var(--red);
+}
+.about_hero_patch.p2{
+  top:calc(clamp(1rem,calc(1rem + 0.5*((100vw - 22.5rem)/87.5)),1.375rem)*2 + 3.5rem + var(--gap-8));
+  right:var(--h-pad);
+  width:clamp(0.5rem,1vw,0.75rem);
+  height:clamp(0.5rem,1vw,0.75rem);
+  background:var(--red);
+}
+.about_hero_patch.p3{
+  bottom:calc(var(--gap-12) + 1rem);
+  right:var(--h-pad);
+  width:clamp(0.5rem,1vw,0.75rem);
+  height:clamp(0.5rem,1vw,0.75rem);
+  background:var(--blue);
+}
+
+/* Tracer lines */
+.about_hero_lines{
+  position:absolute;
+  z-index:3;
+  pointer-events:none;
+}
+.about_hero_lines.left{left:0;bottom:0;}
+.about_hero_lines.right{right:0;bottom:0;}
+.about_hero_lines svg{display:block;overflow:visible;}
+
+/* ===================== STORY SECTION ===================== */
+.story_section{
+  background:var(--surface-primary);
+  padding-top:var(--gap-12);
+  padding-bottom:var(--gap-12);
+}
+.story_inner{
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap-7);
+  max-width:80rem;
+}
+.story_text{
+  color:var(--navy);
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:var(--f4);
+  line-height:1.5;
+  font-weight:400;
+}
+
+/* ===================== TEAM SECTION ===================== */
+.team_section{
+  background:var(--surface-secondary);
+  padding-top:var(--gap-12);
+  padding-bottom:var(--gap-12);
+}
+.team_head{
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap-6);
+  margin-bottom:var(--gap-8);
+  max-width:70rem;
+}
+.team_head h2{
+  font-size:var(--f5);
+}
+.team_grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:var(--gap-7) var(--gap-6);
+}
+.team_card{
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap-5);
+}
+.team_card_photo{
+  position:relative;
+  aspect-ratio:3/4;
+  overflow:hidden;
+  background:linear-gradient(160deg,#171b33,#0b0d19);
+}
+/* Subtle noise overlay */
+.team_card_photo::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  opacity:0.15;
+  pointer-events:none;
+}
+.team_card_overlay{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(11,13,25,0.92) 0%,transparent 100%);
+  padding:var(--gap-6);
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  gap:0.3rem;
+}
+.team_card_role{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:0.625rem;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+  color:var(--red);
+  line-height:1;
+}
+.team_card_overlay_name{
+  font-family:'Styrene A LC',Arial,sans-serif;
+  font-weight:500;
+  font-size:var(--f2);
+  text-transform:uppercase;
+  color:#ffffff;
+  line-height:1.1;
+}
+.team_card_overlay_title{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:var(--f0);
+  color:rgba(255,255,255,0.6);
+  line-height:1.3;
+}
+.team_card_info{
+  display:flex;
+  flex-direction:column;
+  gap:0.2rem;
+}
+.team_card_name{
+  font-family:'Styrene A LC',Arial,sans-serif;
+  font-weight:500;
+  font-size:var(--f2);
+  text-transform:uppercase;
+  color:var(--navy);
+  line-height:1.1;
+}
+.team_card_title{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:var(--f0);
+  color:rgba(10,10,10,0.5);
+  line-height:1.4;
+}
+
+/* ===================== FOOTER ===================== */
+.footer{
+  background:var(--navy-900);
+  position:relative;
+  overflow:hidden;
+}
+.footer_top{
+  padding:var(--gap-11) var(--h-pad);
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:var(--gap-8);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  position:relative;
+  z-index:2;
+}
+.footer_brand{
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap-7);
+}
+.footer_tagline{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:var(--f0);
+  color:rgba(255,255,255,0.4);
+  line-height:1.6;
+  max-width:18rem;
+}
+.footer_newsletter{
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap-6);
+}
+.footer_newsletter_label{
+  font-family:'Styrene A LC',Arial,sans-serif;
+  font-weight:500;
+  font-size:var(--f0);
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  color:rgba(255,255,255,0.7);
+}
+.footer_form{
+  display:flex;
+  gap:0;
+  border:1px solid rgba(255,255,255,0.15);
+}
+.footer_input{
+  flex:1;
+  background:transparent;
+  border:none;
+  outline:none;
+  padding:0.875rem var(--gap-6);
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:var(--f0);
+  color:#ffffff;
+}
+.footer_input::placeholder{color:rgba(255,255,255,0.3);}
+.footer_submit{
+  background:var(--red);
+  border:none;
+  padding:0.875rem var(--gap-6);
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:var(--f0);
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  color:#ffffff;
+  cursor:pointer;
+  transition:background 0.2s;
+  flex-shrink:0;
+  white-space:nowrap;
+}
+.footer_submit:hover{background:#d91f22;}
+.footer_nav_col{
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap-5);
+}
+.footer_nav_link{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:var(--f0);
+  color:rgba(255,255,255,0.5);
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  transition:color 0.2s;
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+}
+.footer_nav_link:hover{color:#ffffff;}
+.footer_nav_link_num{font-size:0.625rem;opacity:0.4;}
+.footer_canvas_wrapper{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.footer_canvas_wrapper canvas{
+  width:100%;
+  height:100%;
+}
+.footer_bottom{
+  padding:var(--gap-7) var(--h-pad);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:var(--gap-6);
+  flex-wrap:wrap;
+  position:relative;
+  z-index:2;
+}
+.footer_legal{
+  display:flex;
+  gap:var(--gap-6);
+  align-items:center;
+}
+.footer_legal_link{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:0.75rem;
+  color:rgba(255,255,255,0.3);
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  transition:color 0.2s;
+}
+.footer_legal_link:hover{color:rgba(255,255,255,0.7);}
+.footer_copy{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:0.75rem;
+  color:rgba(255,255,255,0.3);
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+}
+.footer_social{display:flex;gap:var(--gap-5);}
+.footer_social_link{
+  width:2.25rem;height:2.25rem;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  transition:background 0.2s, border-color 0.2s;
+}
+.footer_social_link:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.2);}
+.footer_social_link svg{width:1rem;height:1rem;fill:rgba(255,255,255,0.6);}
+
+/* ===================== COOKIES ===================== */
+.cookies{
+  position:fixed;
+  bottom:1.5rem;right:1.5rem;
+  width:clamp(16rem,90vw,22rem);
+  background:#ffffff;
+  border:1px solid var(--neutral-200);
+  padding:var(--gap-6);
+  z-index:9998;
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap-5);
+  box-shadow:0 8px 32px rgba(0,0,0,0.12);
+  transform:translateY(0);
+  transition:transform 0.5s cubic-bezier(.19,1,.22,1), opacity 0.5s;
+}
+.cookies.hidden{
+  transform:translateY(120%);
+  opacity:0;
+  pointer-events:none;
+}
+.cookies p{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:0.8125rem;
+  color:#555;
+  line-height:1.6;
+}
+.cookies_actions{
+  display:flex;
+  gap:var(--gap-5);
+  align-items:center;
+  flex-wrap:wrap;
+}
+.cookies_accept{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:var(--f0);
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  background:var(--navy);
+  color:#fff;
+  border:none;
+  padding:0.625rem 1rem;
+  cursor:pointer;
+  transition:background 0.2s;
+  flex-shrink:0;
+}
+.cookies_accept:hover{background:var(--red);}
+.cookies_link{
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:var(--f0);
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  color:rgba(10,10,10,0.4);
+  text-decoration:none;
+  transition:color 0.2s;
+}
+.cookies_link:hover{color:var(--navy);}
+
+/* ===================== MOBILE NAV ===================== */
+.mobile_nav{
+  display:none;
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background:var(--navy-900);
+  z-index:1000;
+  flex-direction:column;
+  padding:var(--gap-11) var(--h-pad);
+  gap:var(--gap-7);
+}
+.mobile_nav.open{display:flex;}
+.mobile_nav_close{
+  align-self:flex-end;
+  background:none;
+  border:none;
+  cursor:pointer;
+  color:#ffffff;
+  font-size:2rem;
+  line-height:1;
+  padding:0.5rem;
+}
+.mobile_nav_link{
+  font-family:'Styrene A LC',Arial,sans-serif;
+  font-weight:500;
+  font-size:var(--f5);
+  text-transform:uppercase;
+  color:#ffffff;
+  text-decoration:none;
+  line-height:1;
+  transition:color 0.2s;
+}
+.mobile_nav_link:hover{color:var(--red);}
+
+/* ===================== HELPERS ===================== */
+[padding-top="Base"]{padding-top:var(--gap-11);}
+[padding-bottom="Base"]{padding-bottom:var(--gap-11);}
+[padding-top="Large"]{padding-top:var(--gap-12);}
+[padding-bottom="Large"]{padding-bottom:var(--gap-12);}
+[data-reveal]{opacity:0;transform:translateY(24px);}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:900px){
+  .header_logo .logo-desktop{display:none;}
+  .header_logo .logo-mobile{display:block;}
+  .header_nav{display:none;}
+  .header_hamburger{display:flex;}
+  .team_grid{grid-template-columns:repeat(2,1fr);}
+  .footer_top{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .team_grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<!-- PAGE TRANSITION -->
+<div class="page_transition_container" id="pageTransition">
+  <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+  <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+  <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+  <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+  <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+  <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+  <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header_block">
+    <div class="header_brand_group">
+      <a href="index.html" class="header_logo">
+        <svg class="logo-desktop" width="224" height="18" viewBox="0 0 250 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M107.28 0C113.505 0 115.877 4.28399 116.337 6.46875H111.675C111.242 5.71443 109.923 4.12312 107.283 4.12305C104.103 4.12305 102.162 6.73799 102.162 9.89062C102.162 13.0435 104.103 15.6582 107.283 15.6582C110.114 15.6581 111.298 14.0416 111.703 13.3125H116.339C115.962 15.2259 113.724 19.7812 107.283 19.7812C101.543 19.7812 97.4727 15.5778 97.4727 9.89062H97.4707C97.4707 4.2038 101.541 0.000104688 107.28 0ZM153.693 12.0479V0.324219H158.061V19.5127H154.337L143.908 6.28027V19.46H139.436V0.324219H144.638L153.693 12.0479ZM34.6973 12.666L39.5498 0.324219H45.9629V19.459H41.5439V4.98535L35.9365 19.4844H32.8643L27.3408 5.09375V19.457H23.1377V0.324219H29.8477L34.6973 12.666ZM94.6748 19.46H90.0938V0.324219H94.6748V19.46ZM65.7939 4.09766H54.3672V7.54688H63.75V11.4014H54.3672V15.4971H66.0459V19.459H49.7861V0.324219H65.7939V4.09766ZM21.4258 19.457H16.5762L15.1475 16.1426H6.03613L4.6084 19.457H0L8.38184 0.295898H13.0713L21.4258 19.457ZM80.2109 0.324219C84.4423 0.324219 87.0293 2.37328 87.0293 6.33301C87.0293 9.00055 85.682 10.8333 83.3916 11.668L87.7031 19.457H82.8789L78.8359 12.1807H73.5811V19.457H69.001V0.324219H80.2109ZM137.725 19.4561H132.874L131.446 16.1426H122.338L120.909 19.4561H116.301L124.681 0.295898H129.37L137.725 19.4561ZM7.67871 12.3164H13.501L10.5898 5.55078L7.67871 12.3164ZM123.979 12.3164H129.802L126.891 5.55078L123.979 12.3164ZM73.5811 8.3291H79.7266C81.4232 8.32897 82.3406 7.65553 82.3408 6.33594C82.3408 4.88028 81.4509 4.26183 79.7266 4.26172H73.5811V8.3291Z" fill="#171B33"/>
+          <path d="M240.932 0C247.164 0 249.539 4.28984 249.998 6.47754H245.332C244.898 5.72221 243.576 4.12891 240.934 4.12891C237.748 4.12902 235.805 6.74728 235.805 9.9043C235.805 13.0609 237.748 15.6786 240.934 15.6787C243.768 15.6787 244.953 14.0601 245.359 13.3301H250.003C249.624 15.2459 247.383 19.8076 240.934 19.8076C235.186 19.8075 231.111 15.5986 231.111 9.9043H231.107C231.107 4.2096 235.183 2.3679e-05 240.932 0ZM203.092 0.324219C207.273 0.324219 209.514 2.37633 209.514 5.5332C209.514 7.52953 208.164 8.82547 206.814 9.36426C208.488 9.93065 210 11.4691 210 14.0068C210 17.3248 207.707 19.4854 203.281 19.4854H192.027V0.324219H203.092ZM230.303 4.31738H223.045V19.4824H218.482V4.31738H211.225V0.324219H230.303V4.31738ZM196.533 15.7871H202.471C204.357 15.7871 205.33 15.0316 205.33 13.627C205.33 12.2221 204.357 11.4941 202.471 11.4941H196.533V15.7871ZM196.533 7.79883H202.361C203.928 7.79883 204.844 7.20424 204.844 5.91016C204.844 4.61647 203.953 4.02246 202.361 4.02246H196.533V7.79883Z" fill="#171B33"/>
+          <path d="M168.234 0.21035H165.497V2.94758H168.234V0.21035Z" fill="#2D4CFF"/>
+          <path d="M184.656 2.94758V0.21035L168.233 0.21035V2.94758L184.656 2.94758Z" fill="#FF2C2F"/>
+          <path d="M184.656 8.42222V5.68498L168.233 5.68498V8.42222H184.656Z" fill="#FF2C2F"/>
+          <path d="M184.656 13.8968V11.1596L168.233 11.1596V13.8968H184.656Z" fill="#FF2C2F"/>
+          <path d="M184.656 19.3715V16.6343H168.233V19.3715H184.656Z" fill="#FF2C2F"/>
+          <path d="M168.234 5.68498H165.497V8.42222H168.234V5.68498Z" fill="#2D4CFF"/>
+          <path d="M168.234 11.1596H165.497V13.8968H168.234V11.1596Z" fill="#2D4CFF"/>
+          <path d="M168.234 16.6343H165.497V19.3715H168.234V16.6343Z" fill="#2D4CFF"/>
+        </svg>
+        <svg class="logo-mobile" width="88" height="18" viewBox="0 0 105 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M95.9316 0C102.164 0 104.539 4.28984 104.998 6.47754H100.332C99.8982 5.72221 98.5759 4.12891 95.9336 4.12891C92.748 4.12902 90.8047 6.74728 90.8047 9.9043C90.8048 13.0609 92.7481 15.6786 95.9336 15.6787C98.7677 15.6787 99.953 14.0601 100.359 13.3301H105.003C104.624 15.2459 102.383 19.8076 95.9336 19.8076C90.1856 19.8075 86.1115 15.5986 86.1113 9.9043H86.1074C86.1074 4.2096 90.1835 2.3679e-05 95.9316 0ZM58.0918 0.324219C62.2734 0.324219 64.5137 2.37633 64.5137 5.5332C64.5135 7.52952 63.1641 8.82547 61.8145 9.36426C63.4884 9.93065 65 11.4691 65 14.0068C65 17.3248 62.7071 19.4854 58.2812 19.4854H47.0273V0.324219H58.0918ZM85.3027 4.31738H78.0449V19.4824H73.4824V4.31738H66.2246V0.324219H85.3027V4.31738ZM44.4258 19.457H39.5762L38.1475 16.1426H29.0361L27.6084 19.457H23L31.3818 0.295898H36.0713L44.4258 19.457ZM51.5332 15.7871H57.4707C59.3572 15.7871 60.33 15.0316 60.3301 13.627C60.3301 12.2221 59.3573 11.4941 57.4707 11.4941H51.5332V15.7871ZM30.6787 12.3164H36.501L33.5898 5.55078L30.6787 12.3164ZM51.5332 7.79883H57.3613C58.9279 7.79883 59.8438 7.20424 59.8438 5.91016C59.8436 4.61647 58.953 4.02246 57.3613 4.02246H51.5332V7.79883Z" fill="#171B33"/>
+          <path d="M2.73723 0.210352H0V2.94759H2.73723V0.210352Z" fill="#2D4CFF"/>
+          <path d="M19.1591 2.94758V0.21035L2.73568 0.21035V2.94758L19.1591 2.94758Z" fill="#FF2C2F"/>
+          <path d="M19.1591 8.42222V5.68498L2.73568 5.68498V8.42222H19.1591Z" fill="#FF2C2F"/>
+          <path d="M19.1591 13.8969V11.1596L2.73568 11.1596V13.8969H19.1591Z" fill="#FF2C2F"/>
+          <path d="M19.1591 19.3715V16.6343H2.73568V19.3715H19.1591Z" fill="#FF2C2F"/>
+          <path d="M2.73717 5.68498H-6.10352e-05V8.42222H2.73717V5.68498Z" fill="#2D4CFF"/>
+          <path d="M2.73717 11.1596H-6.10352e-05V13.8969H2.73717V11.1596Z" fill="#2D4CFF"/>
+          <path d="M2.73717 16.6343H-6.10352e-05V19.3715H2.73717V16.6343Z" fill="#2D4CFF"/>
+        </svg>
+      </a>
+      <div class="header_mark"></div>
+      <div class="header_stock">
+        <span class="header_stock_price">$--</span>
+        <span class="header_stock_update">Last updated</span>
+      </div>
+    </div>
+    <nav class="header_nav">
+      <a href="about.html" class="header_nav_link w--current">
+        <div class="header_nav_link_mark">02</div>
+        <div class="header_nav_link_text">About</div>
+        <div class="header_nav_link_patch"></div>
+      </a>
+      <a href="news.html" class="header_nav_link">
+        <div class="header_nav_link_mark">03</div>
+        <div class="header_nav_link_text">NEWS &amp; INSIGHTS</div>
+        <div class="header_nav_link_patch"></div>
+      </a>
+      <a href="investors.html" class="header_nav_link">
+        <div class="header_nav_link_mark">05</div>
+        <div class="header_nav_link_text">INVESTORs</div>
+        <div class="header_nav_link_patch"></div>
+      </a>
+    </nav>
+    <button class="header_hamburger" aria-label="Menu" id="hamburgerBtn">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="header_block_patch"></div>
+    <div class="header_block_patch is--left"></div>
+  </div>
+  <div class="header_nav_backdrop" id="navBackdrop"></div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="mobile_nav" id="mobileNav">
+  <button class="mobile_nav_close" id="mobileNavClose">&#x2715;</button>
+  <a href="about.html" class="mobile_nav_link">About</a>
+  <a href="news.html" class="mobile_nav_link">News &amp; Insights</a>
+  <a href="investors.html" class="mobile_nav_link">Investors</a>
+</div>
+
+<main>
+
+  <!-- ======================================
+       HERO SECTION
+  ======================================= -->
+  <section class="about_hero dark-section">
+    <!-- Video background -->
+    <div class="about_hero_video">
+      <video autoplay loop muted playsinline>
+        <source src="https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2c13_Grid%20-%20ABTC%20(1)-transcode.mp4" type="video/mp4"/>
+      </video>
+    </div>
+    <!-- Gradient overlay -->
+    <div class="about_hero_gradient"></div>
+
+    <!-- Decorative patches -->
+    <div class="about_hero_patch p1"></div>
+    <div class="about_hero_patch p2"></div>
+    <div class="about_hero_patch p3"></div>
+
+    <!-- Tracer lines -->
+    <div class="about_hero_lines left">
+      <svg width="120" height="320" viewBox="0 0 120 320" fill="none" overflow="visible">
+        <path class="trace-path" d="M120 0 L40 0 L40 80 L0 80 L0 220 L40 220 L40 320" stroke="#2D4CFF" stroke-width="1" stroke-dasharray="700" stroke-dashoffset="700" fill="none" opacity="0.4"/>
+        <path class="trace-path" d="M120 40 L60 40 L60 120 L20 120 L20 200 L60 200 L60 320" stroke="#ff2c2f" stroke-width="1" stroke-dasharray="700" stroke-dashoffset="700" fill="none" opacity="0.25"/>
+      </svg>
+    </div>
+    <div class="about_hero_lines right">
+      <svg width="120" height="320" viewBox="0 0 120 320" fill="none" overflow="visible">
+        <path class="trace-path" d="M0 0 L80 0 L80 80 L120 80 L120 220 L80 220 L80 320" stroke="#2D4CFF" stroke-width="1" stroke-dasharray="700" stroke-dashoffset="700" fill="none" opacity="0.4"/>
+        <path class="trace-path" d="M0 40 L60 40 L60 120 L100 120 L100 200 L60 200 L60 320" stroke="#ff2c2f" stroke-width="1" stroke-dasharray="700" stroke-dashoffset="700" fill="none" opacity="0.25"/>
+      </svg>
+    </div>
+
+    <!-- Content -->
+    <div class="lyt" style="width:100%;position:relative;z-index:4;">
+      <div class="about_hero_content">
+        <h1 class="f6">
+          <span class="word">INSTITUTIONAL-GRADE</span>
+          <span class="word"> </span>
+          <em><span class="word">Bitcoin</span></em>
+          <span class="word"> ExPOSURE</span>
+        </h1>
+        <p class="f2">American Bitcoin is a pure-play Bitcoin accumulation platform that integrates scaled Bitcoin mining operations with disciplined accumulation strategies.</p>
+        <a href="#story" class="link light">
+          <div class="link_content">
+            <span class="link_text">Learn more</span>
+            <div class="link_icon_wrapper">
+              <svg viewBox="0 0 12 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.367357 12L0.367357 10.9608L10.2261 10.9608L4.63115e-07 0.734714L0.734715 -4.92421e-07L10.9608 10.2261L10.9608 0.367357L12 0.367357L12 12L0.367357 12Z" fill="currentColor"/></svg>
+            </div>
+            <div class="link_background_cover"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================
+       STORY SECTION
+  ======================================= -->
+  <section id="story" class="story_section">
+    <div class="lyt">
+      <div class="story_inner">
+        <div class="section_label" data-reveal>our story</div>
+        <p class="story_text" data-reveal>American Bitcoin was formed through the strategic contribution of substantially all of Hut 8's ASIC fleet into a new venture led by Eric Trump and Donald Trump Jr. That venture was subsequently renamed and relaunched as American Bitcoin, which today operates as a majority-owned subsidiary of Hut 8.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================
+       TEAM SECTION
+  ======================================= -->
+  <section class="team_section">
+    <div class="lyt">
+      <div class="team_head">
+        <div class="section_label" data-reveal>OUR team</div>
+        <h2 class="f5" data-reveal>With deep expertise across mining, accumulation, and ecosystem strategy, our team was purpose-built to scale America's Bitcoin infrastructure backbone.</h2>
+      </div>
+
+      <div class="team_grid">
+
+        <!-- 1 Eric Trump -->
+        <div class="team_card" data-reveal>
+          <div class="team_card_photo">
+            <div class="team_card_overlay">
+              <span class="team_card_role">Co-founder</span>
+              <div class="team_card_overlay_name">Eric Trump</div>
+              <div class="team_card_overlay_title">Chief Strategy Officer</div>
+            </div>
+          </div>
+          <div class="team_card_info">
+            <div class="team_card_name">Eric Trump</div>
+            <div class="team_card_title">Co-founder &amp; Chief Strategy Officer</div>
+          </div>
+        </div>
+
+        <!-- 2 Mike Ho -->
+        <div class="team_card" data-reveal>
+          <div class="team_card_photo" style="background:linear-gradient(160deg,#1a2040,#0d1126);">
+            <div class="team_card_overlay">
+              <span class="team_card_role">Chief Executive</span>
+              <div class="team_card_overlay_name">Mike Ho</div>
+              <div class="team_card_overlay_title">Chief Executive Officer &amp; Director</div>
+            </div>
+          </div>
+          <div class="team_card_info">
+            <div class="team_card_name">Mike Ho</div>
+            <div class="team_card_title">Chief Executive Officer &amp; Director</div>
+          </div>
+        </div>
+
+        <!-- 3 Matt Prusak -->
+        <div class="team_card" data-reveal>
+          <div class="team_card_photo" style="background:linear-gradient(160deg,#0f1930,#080b17);">
+            <div class="team_card_overlay">
+              <span class="team_card_role">President</span>
+              <div class="team_card_overlay_name">Matt Prusak</div>
+              <div class="team_card_overlay_title">President &amp; Interim CFO</div>
+            </div>
+          </div>
+          <div class="team_card_info">
+            <div class="team_card_name">Matt Prusak</div>
+            <div class="team_card_title">President &amp; Interim Chief Financial Officer</div>
+          </div>
+        </div>
+
+        <!-- 4 Asher Genoot -->
+        <div class="team_card" data-reveal>
+          <div class="team_card_photo" style="background:linear-gradient(160deg,#151c35,#0a0e1f);">
+            <div class="team_card_overlay">
+              <span class="team_card_role">Executive Chairman</span>
+              <div class="team_card_overlay_name">Asher Genoot</div>
+              <div class="team_card_overlay_title">Executive Chairman</div>
+            </div>
+          </div>
+          <div class="team_card_info">
+            <div class="team_card_name">Asher Genoot</div>
+            <div class="team_card_title">Executive Chairman</div>
+          </div>
+        </div>
+
+        <!-- 5 Michael Broukhim -->
+        <div class="team_card" data-reveal>
+          <div class="team_card_photo" style="background:linear-gradient(160deg,#121828,#080d1c);">
+            <div class="team_card_overlay">
+              <span class="team_card_role">Board Member</span>
+              <div class="team_card_overlay_name">Michael Broukhim</div>
+              <div class="team_card_overlay_title">Board Member</div>
+            </div>
+          </div>
+          <div class="team_card_info">
+            <div class="team_card_name">Michael Broukhim</div>
+            <div class="team_card_title">Board Member</div>
+          </div>
+        </div>
+
+        <!-- 6 Justin Mateen -->
+        <div class="team_card" data-reveal>
+          <div class="team_card_photo" style="background:linear-gradient(160deg,#1c1630,#0f0b1e);">
+            <div class="team_card_overlay">
+              <span class="team_card_role">Board Member</span>
+              <div class="team_card_overlay_name">Justin Mateen</div>
+              <div class="team_card_overlay_title">Board Member</div>
+            </div>
+          </div>
+          <div class="team_card_info">
+            <div class="team_card_name">Justin Mateen</div>
+            <div class="team_card_title">Board Member</div>
+          </div>
+        </div>
+
+        <!-- 7 Richard S. Busch -->
+        <div class="team_card" data-reveal>
+          <div class="team_card_photo" style="background:linear-gradient(160deg,#16182e,#0b0d1f);">
+            <div class="team_card_overlay">
+              <span class="team_card_role">Board Member</span>
+              <div class="team_card_overlay_name">Richard S. Busch</div>
+              <div class="team_card_overlay_title">Board Member</div>
+            </div>
+          </div>
+          <div class="team_card_info">
+            <div class="team_card_name">Richard S. Busch</div>
+            <div class="team_card_title">Board Member</div>
+          </div>
+        </div>
+
+        <!-- 8 Donald Trump Jr. -->
+        <div class="team_card" data-reveal>
+          <div class="team_card_photo" style="background:linear-gradient(160deg,#171b33,#0b0d19);">
+            <div class="team_card_overlay">
+              <span class="team_card_role">Co-founder</span>
+              <div class="team_card_overlay_name">Donald Trump Jr.</div>
+              <div class="team_card_overlay_title">Senior Advisor</div>
+            </div>
+          </div>
+          <div class="team_card_info">
+            <div class="team_card_name">Donald Trump Jr.</div>
+            <div class="team_card_title">Senior Advisor</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer dark-section">
+  <div class="footer_canvas_wrapper">
+    <canvas id="footerCanvas"></canvas>
+  </div>
+  <div class="footer_top">
+    <div class="footer_brand">
+      <a href="index.html" style="text-decoration:none;display:inline-block">
+        <svg width="200" height="16" viewBox="0 0 250 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M107.28 0C113.505 0 115.877 4.28399 116.337 6.46875H111.675C111.242 5.71443 109.923 4.12312 107.283 4.12305C104.103 4.12305 102.162 6.73799 102.162 9.89062C102.162 13.0435 104.103 15.6582 107.283 15.6582C110.114 15.6581 111.298 14.0416 111.703 13.3125H116.339C115.962 15.2259 113.724 19.7812 107.283 19.7812C101.543 19.7812 97.4727 15.5778 97.4727 9.89062H97.4707C97.4707 4.2038 101.541 0.000104688 107.28 0ZM153.693 12.0479V0.324219H158.061V19.5127H154.337L143.908 6.28027V19.46H139.436V0.324219H144.638L153.693 12.0479ZM34.6973 12.666L39.5498 0.324219H45.9629V19.459H41.5439V4.98535L35.9365 19.4844H32.8643L27.3408 5.09375V19.457H23.1377V0.324219H29.8477L34.6973 12.666ZM94.6748 19.46H90.0938V0.324219H94.6748V19.46ZM65.7939 4.09766H54.3672V7.54688H63.75V11.4014H54.3672V15.4971H66.0459V19.459H49.7861V0.324219H65.7939V4.09766ZM21.4258 19.457H16.5762L15.1475 16.1426H6.03613L4.6084 19.457H0L8.38184 0.295898H13.0713L21.4258 19.457ZM80.2109 0.324219C84.4423 0.324219 87.0293 2.37328 87.0293 6.33301C87.0293 9.00055 85.682 10.8333 83.3916 11.668L87.7031 19.457H82.8789L78.8359 12.1807H73.5811V19.457H69.001V0.324219H80.2109ZM137.725 19.4561H132.874L131.446 16.1426H122.338L120.909 19.4561H116.301L124.681 0.295898H129.37L137.725 19.4561ZM7.67871 12.3164H13.501L10.5898 5.55078L7.67871 12.3164ZM123.979 12.3164H129.802L126.891 5.55078L123.979 12.3164ZM73.5811 8.3291H79.7266C81.4232 8.32897 82.3406 7.65553 82.3408 6.33594C82.3408 4.88028 81.4509 4.26183 79.7266 4.26172H73.5811V8.3291Z" fill="rgba(255,255,255,0.8)"/>
+          <path d="M240.932 0C247.164 0 249.539 4.28984 249.998 6.47754H245.332C244.898 5.72221 243.576 4.12891 240.934 4.12891C237.748 4.12902 235.805 6.74728 235.805 9.9043C235.805 13.0609 237.748 15.6786 240.934 15.6787C243.768 15.6787 244.953 14.0601 245.359 13.3301H250.003C249.624 15.2459 247.383 19.8076 240.934 19.8076C235.186 19.8075 231.111 15.5986 231.111 9.9043H231.107C231.107 4.2096 235.183 2.3679e-05 240.932 0ZM203.092 0.324219C207.273 0.324219 209.514 2.37633 209.514 5.5332C209.514 7.52953 208.164 8.82547 206.814 9.36426C208.488 9.93065 210 11.4691 210 14.0068C210 17.3248 207.707 19.4854 203.281 19.4854H192.027V0.324219H203.092ZM230.303 4.31738H223.045V19.4824H218.482V4.31738H211.225V0.324219H230.303V4.31738ZM196.533 15.7871H202.471C204.357 15.7871 205.33 15.0316 205.33 13.627C205.33 12.2221 204.357 11.4941 202.471 11.4941H196.533V15.7871ZM196.533 7.79883H202.361C203.928 7.79883 204.844 7.20424 204.844 5.91016C204.844 4.61647 203.953 4.02246 202.361 4.02246H196.533V7.79883Z" fill="rgba(255,255,255,0.8)"/>
+          <path d="M168.234 0.21035H165.497V2.94758H168.234V0.21035Z" fill="#2D4CFF"/>
+          <path d="M184.656 2.94758V0.21035L168.233 0.21035V2.94758L184.656 2.94758Z" fill="#FF2C2F"/>
+          <path d="M184.656 8.42222V5.68498L168.233 5.68498V8.42222H184.656Z" fill="#FF2C2F"/>
+          <path d="M184.656 13.8968V11.1596L168.233 11.1596V13.8968H184.656Z" fill="#FF2C2F"/>
+          <path d="M184.656 19.3715V16.6343H168.233V19.3715H184.656Z" fill="#FF2C2F"/>
+          <path d="M168.234 5.68498H165.497V8.42222H168.234V5.68498Z" fill="#2D4CFF"/>
+          <path d="M168.234 11.1596H165.497V13.8968H168.234V11.1596Z" fill="#2D4CFF"/>
+          <path d="M168.234 16.6343H165.497V19.3715H168.234V16.6343Z" fill="#2D4CFF"/>
+        </svg>
+      </a>
+      <p class="footer_tagline">Building America's Bitcoin Infrastructure Backbone. Establishing the gold standard for Bitcoin infrastructure, reserves, and innovation.</p>
+      <div class="footer_social">
+        <a href="#" class="footer_social_link" aria-label="X / Twitter">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        </a>
+        <a href="#" class="footer_social_link" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="#" class="footer_social_link" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer_newsletter">
+      <div class="footer_newsletter_label">Sign up for the latest news and updates</div>
+      <form class="footer_form" onsubmit="handleNewsletterSubmit(event)">
+        <input class="footer_input" type="email" placeholder="Your email address" required/>
+        <button class="footer_submit" type="submit">Sign Up</button>
+      </form>
+      <div id="formSuccess" style="display:none;font-family:'Archivo',Arial,sans-serif;font-size:var(--f0);color:rgba(255,255,255,0.6)">Thank you! Your submission has been received!</div>
+    </div>
+    <div class="footer_nav_col">
+      <a href="about.html" class="footer_nav_link"><span class="footer_nav_link_num">02</span> About</a>
+      <a href="news.html" class="footer_nav_link"><span class="footer_nav_link_num">03</span> News &amp; Insights</a>
+      <a href="investors.html" class="footer_nav_link"><span class="footer_nav_link_num">05</span> Investors</a>
+      <a href="#" class="footer_nav_link">Terms of Use</a>
+      <a href="#" class="footer_nav_link">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer_bottom">
+    <div class="footer_legal">
+      <a href="#" class="footer_legal_link">TERMS OF USE</a>
+      <a href="#" class="footer_legal_link">PRIVACY POLICY</a>
+    </div>
+    <div class="footer_copy">&copy; 2026 American Bitcoin Corp. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<!-- COOKIES -->
+<div class="cookies hidden" id="cookieBanner">
+  <p>By clicking "Accept Cookies", you agree to the storing of cookies on your device to enhance site navigation, analyze site usage, and assist in our marketing efforts.</p>
+  <div class="cookies_actions">
+    <button class="cookies_accept" id="cookieAccept">ACCEPT COOKIES</button>
+    <a href="#" class="cookies_link">LEARN MORE</a>
+  </div>
+</div>
+
+</div><!-- end .page -->
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// PAGE TRANSITION OUT
+const tiles = document.querySelectorAll('.page_transition_container .tile');
+gsap.set(tiles, { scaleY: 1 });
+gsap.to(tiles, {
+  scaleY: 0,
+  duration: 0.6,
+  ease: 'power3.inOut',
+  stagger: { amount: 0.5, from: 'random' },
+  delay: 0.1,
+  onComplete: () => { document.getElementById('pageTransition').style.display = 'none'; }
+});
+
+// PAGE TRANSITION on nav links
+document.querySelectorAll('a[href]').forEach(link => {
+  const href = link.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('http')) return;
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const dest = href;
+    gsap.set(tiles, { scaleY: 0, transformOrigin: 'bottom' });
+    gsap.to(tiles, {
+      scaleY: 1,
+      duration: 0.5,
+      ease: 'power3.inOut',
+      stagger: { amount: 0.4, from: 'random' },
+      onComplete: () => { window.location.href = dest; }
+    });
+  });
+});
+
+// HERO WORD REVEAL
+const heroWords = document.querySelectorAll('.about_hero_content h1 .word');
+gsap.fromTo(heroWords,
+  { opacity: 0, y: 40, filter: 'blur(4px)' },
+  { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out', stagger: 0.07, delay: 0.7 }
+);
+gsap.fromTo('.about_hero_content .f2',
+  { opacity: 0, y: 20 },
+  { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: 1.2 }
+);
+gsap.fromTo('.about_hero_content .link',
+  { opacity: 0, y: 20 },
+  { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: 1.5 }
+);
+
+// TRACER LINES
+const tracerPaths = document.querySelectorAll('.trace-path');
+gsap.to(tracerPaths, {
+  strokeDashoffset: 0,
+  duration: 2.2,
+  ease: 'power2.inOut',
+  stagger: 0.4,
+  delay: 0.9
+});
+
+// SCROLL REVEAL
+gsap.utils.toArray('[data-reveal]').forEach(el => {
+  gsap.fromTo(el,
+    { opacity: 0, y: 24 },
+    { opacity: 1, y: 0, duration: 0.85, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+    }
+  );
+});
+
+// FOOTER PIXEL CANVAS
+(function initFooterCanvas() {
+  const canvas = document.getElementById('footerCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const footer = canvas.parentElement.parentElement;
+  function resizeCanvas() {
+    canvas.width = footer.offsetWidth;
+    canvas.height = footer.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  const COLORS = ['#f5f6fc','#2d4cff','#ff2c2f','rgba(255,255,255,0.3)'];
+  const particles = [];
+  const COUNT = 60;
+  for (let i = 0; i < COUNT; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: -(Math.random() * 0.4 + 0.1),
+      alpha: Math.random() * 0.4 + 0.05,
+      size: Math.random() * 3 + 1,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)]
+    });
+  }
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+      if (p.x < -10) p.x = canvas.width + 10;
+      if (p.x > canvas.width + 10) p.x = -10;
+      ctx.globalAlpha = p.alpha;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(Math.round(p.x), Math.round(p.y), Math.ceil(p.size), Math.ceil(p.size));
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+// MOBILE NAV
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileNav = document.getElementById('mobileNav');
+const mobileNavClose = document.getElementById('mobileNavClose');
+const navBackdrop = document.getElementById('navBackdrop');
+hamburgerBtn && hamburgerBtn.addEventListener('click', () => { mobileNav.classList.add('open'); document.body.style.overflow = 'hidden'; });
+mobileNavClose && mobileNavClose.addEventListener('click', () => { mobileNav.classList.remove('open'); document.body.style.overflow = ''; });
+navBackdrop && navBackdrop.addEventListener('click', () => { mobileNav.classList.remove('open'); document.body.style.overflow = ''; });
+
+// COOKIES
+const cookieBanner = document.getElementById('cookieBanner');
+const cookieAccept = document.getElementById('cookieAccept');
+if (!localStorage.getItem('abtc_cookies_accepted')) {
+  setTimeout(() => cookieBanner && cookieBanner.classList.remove('hidden'), 2000);
+}
+cookieAccept && cookieAccept.addEventListener('click', () => {
+  cookieBanner.classList.add('hidden');
+  localStorage.setItem('abtc_cookies_accepted', '1');
+});
+
+// NEWSLETTER
+function handleNewsletterSubmit(e) {
+  e.preventDefault();
+  document.getElementById('formSuccess').style.display = 'block';
+  e.target.style.display = 'none';
+}
+
+// HEADER SCROLL
+const headerBlock = document.querySelector('.header_block');
+window.addEventListener('scroll', () => {
+  headerBlock.style.boxShadow = window.scrollY > 80 ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
+}, { passive: true });
+
+// SMOOTH SCROLL ANCHORS
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', e => {
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const hh = document.querySelector('.header_block').offsetHeight;
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - hh, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
