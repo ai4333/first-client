@@ -8,12 +8,12 @@
 class PremiumAudioController {
   constructor() {
     // Compressed MP3 Audio Paths (Relative to support file:// protocol)
-    this.ambientSrc = 'public/audio/ambient-loop.mp3';
-    this.hoverSrc = 'public/audio/hover.mp3';
-    this.secondaryHoverSrc = 'public/audio/secondary-hover.mp3';
-    this.clickSrc = 'public/audio/click.mp3';
-    this.transitionSrc = 'public/audio/home-transition.mp3';
-    this.modalSrc = 'public/audio/modal-open.mp3';
+    this.ambientSrc = 'public_assets/audio/ambient-loop.mp3';
+    this.hoverSrc = 'public_assets/audio/hover.mp3';
+    this.secondaryHoverSrc = 'public_assets/audio/secondary-hover.mp3';
+    this.clickSrc = 'public_assets/audio/click.mp3';
+    this.transitionSrc = 'public_assets/audio/home-transition.mp3';
+    this.modalSrc = 'public_assets/audio/modal-open.mp3';
 
     // State management
     this.isMuted = localStorage.getItem('gc-audio-muted') === 'true';
