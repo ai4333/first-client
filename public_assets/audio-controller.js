@@ -8,12 +8,12 @@
 class PremiumAudioController {
   constructor() {
     // Compressed MP3 Audio Paths (Relative to support file:// protocol)
-    this.ambientSrc = '/public_assets/audio/ambient-loop.mp3';
-    this.hoverSrc = '/public_assets/audio/hover.mp3';
-    this.secondaryHoverSrc = '/public_assets/audio/secondary-hover.mp3';
-    this.clickSrc = '/public_assets/audio/click.mp3';
-    this.transitionSrc = '/public_assets/audio/home-transition.mp3';
-    this.modalSrc = '/public_assets/audio/modal-open.mp3';
+    this.ambientSrc = 'public_assets/audio/ambient-loop.mp3';
+    this.hoverSrc = 'public_assets/audio/hover.mp3';
+    this.secondaryHoverSrc = 'public_assets/audio/secondary-hover.mp3';
+    this.clickSrc = 'public_assets/audio/click.mp3';
+    this.transitionSrc = 'public_assets/audio/home-transition.mp3';
+    this.modalSrc = 'public_assets/audio/modal-open.mp3';
 
     // State management
     this.isMuted = localStorage.getItem('gc-audio-muted') === 'true';
@@ -223,24 +223,35 @@ class PremiumAudioController {
   setupEventListeners() {
     // Play background ambient on first interaction
     const unlockAudio = () => {
-      if (this.hasInteracted) return;
-      this.hasInteracted = true;
-      
       this.unlockAudioContext();
 
       if (!this.isMuted) {
-        this.ambientAudio.play().catch(e => console.log('Audio ambient autoplay blocked: ', e));
+        const playPromise = this.ambientAudio.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            if (!this.hasInteracted) {
+              this.hasInteracted = true;
+              window.removeEventListener('click', unlockAudio);
+              window.removeEventListener('touchstart', unlockAudio);
+              window.removeEventListener('keydown', unlockAudio);
+            }
+          }).catch(e => {
+            console.log('Audio ambient autoplay blocked, waiting for next interaction: ', e);
+            // Don't set hasInteracted=true so it can retry on the next click
+          });
+        }
+      } else {
+        // If it's muted, we just consider it unlocked
+        this.hasInteracted = true;
+        window.removeEventListener('click', unlockAudio);
+        window.removeEventListener('touchstart', unlockAudio);
+        window.removeEventListener('keydown', unlockAudio);
       }
-
-      // Remove interaction listener once unlocked
-      window.removeEventListener('click', unlockAudio);
-      window.removeEventListener('touchstart', unlockAudio);
-      window.removeEventListener('mousemove', unlockAudio);
     };
 
     window.addEventListener('click', unlockAudio);
     window.addEventListener('touchstart', unlockAudio);
-    window.addEventListener('mousemove', unlockAudio);
+    window.addEventListener('keydown', unlockAudio);
 
     // Event Delegation: Hover effects
     let lastHoveredElement = null;
