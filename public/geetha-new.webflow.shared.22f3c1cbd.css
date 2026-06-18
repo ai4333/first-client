@@ -2061,7 +2061,7 @@ textarea.w-input, textarea.w-select {
 
 @font-face {
   font-family: Archivo;
-  src: url("https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2be8_Archivo-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/68b71c3dcffd6fe62d9b2be8_Archivo-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -2069,7 +2069,7 @@ textarea.w-input, textarea.w-select {
 
 @font-face {
   font-family: Archivo;
-  src: url("https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2bd8_Archivo-Medium.ttf") format("truetype");
+  src: url("../assets/fonts/68b71c3dcffd6fe62d9b2bd8_Archivo-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -2077,7 +2077,7 @@ textarea.w-input, textarea.w-select {
 
 @font-face {
   font-family: Styrene A LC;
-  src: url("https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2bd7_StyreneALC-Regular.otf") format("opentype");
+  src: url("../assets/fonts/68b71c3dcffd6fe62d9b2bd7_StyreneALC-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -2085,7 +2085,7 @@ textarea.w-input, textarea.w-select {
 
 @font-face {
   font-family: Styrene A LC;
-  src: url("https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2bd6_StyreneALC-Medium.otf") format("opentype");
+  src: url("../assets/fonts/68b71c3dcffd6fe62d9b2bd6_StyreneALC-Medium.otf") format("opentype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;

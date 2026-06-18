@@ -310,7 +310,7 @@ class PremiumAudioController {
     toggleContainer.id = 'gc-audio-toggle';
     toggleContainer.innerHTML = `
       <div class="audio_toggle_icon">
-        <svg id="gc-sound-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #ffffff; display: block;">
+        <svg id="gc-sound-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: inherit; display: block;">
           <!-- Speaker Horn -->
           <path d="M11 5L6 9H2v6h4l5 4V5z"/>
           <!-- Sound waves (hidden when muted) -->
@@ -351,13 +351,13 @@ class PremiumAudioController {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #ffffff;
+        color: inherit;
         opacity: 0.8;
       }
       .audio_toggle_label {
         font-size: 0.7rem;
         letter-spacing: 0.1em;
-        color: #ffffff;
+        color: var(--_color-values---swatch--red, #FF2C2F);
       }
       .audio_toggle_wave {
         display: flex;
@@ -381,7 +381,7 @@ class PremiumAudioController {
       .audio_toggle_wave.is--muted span {
         animation: none;
         height: 1.5px !important;
-        background-color: #ffffff;
+        background-color: currentColor;
         opacity: 0.4;
       }
 
@@ -434,6 +434,7 @@ class PremiumAudioController {
         if (this.gainNode) {
           this.gainNode.gain.setValueAtTime(1, this.audioCtx.currentTime);
         }
+        this.ambientAudio.volume = 0.15;
         if (this.hasInteracted) {
           this.ambientAudio.play().catch(() => {});
         }

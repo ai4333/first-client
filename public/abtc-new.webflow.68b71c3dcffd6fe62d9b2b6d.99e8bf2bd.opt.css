@@ -1043,7 +1043,7 @@ blockquote {
   grid-row-gap: var(--_defaults---gap--5);
   background-color: var(--_color-values---swatch--blue--50);
   font-family: var(--_type-values---family--1);
-  background-image: url("https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2c0c_holders_graph_item_pattern.svg");
+  background-image: url("../assets/images/68b71c3dcffd6fe62d9b2c0c_holders_graph_item_pattern.svg");
   background-position: 0 0;
   background-size: auto;
   flex-flow: column;
@@ -1058,7 +1058,7 @@ blockquote {
   background-color: var(--_color-values---swatch--navy);
   color: var(--_color-values---swatch--light);
   text-align: right;
-  background-image: url("https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2c45_holders_graph_item_pattern.svg.svg");
+  background-image: url("../assets/images/68b71c3dcffd6fe62d9b2c45_holders_graph_item_pattern.svg.svg");
 }
 
 .holders_graph_item.second, .holders_graph_item.third {
@@ -1067,7 +1067,7 @@ blockquote {
   background-color: var(--_color-values---swatch--navy);
   color: var(--_color-values---swatch--light);
   text-align: right;
-  background-image: url("https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2c45_holders_graph_item_pattern.svg.svg");
+  background-image: url("../assets/images/68b71c3dcffd6fe62d9b2c45_holders_graph_item_pattern.svg.svg");
 }
 
 .holders_graph_item.fourth {
@@ -1076,7 +1076,7 @@ blockquote {
   background-color: var(--_color-values---swatch--navy);
   color: var(--_color-values---swatch--light);
   text-align: right;
-  background-image: url("https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2c45_holders_graph_item_pattern.svg.svg");
+  background-image: url("../assets/images/68b71c3dcffd6fe62d9b2c45_holders_graph_item_pattern.svg.svg");
 }
 
 .holders_patch {
@@ -1088,8 +1088,7 @@ blockquote {
 }
 
 .holders_patch.holders_patch_blue {
-  background-color: var(--_color-values---swatch--blue);
-  background-color: var(--_color-values---swatch--blue);
+  background-color: var(--_color-values---swatch--red, #FF2C2F);
   top: 0;
   left: 0;
   transform: translate(-100%, -100%);
@@ -1458,8 +1457,8 @@ blockquote {
   color: var(--_color-values---swatch--light);
 }
 
-.future_block_graph_item.bitcoin {
-  background-image: url("https://cdn.prod.website-files.com/68b71c3dcffd6fe62d9b2b85/68b71c3dcffd6fe62d9b2c46_slashed_backer.svg");
+.future_block_graph_item.real_estate {
+  background-image: url("../assets/images/68b71c3dcffd6fe62d9b2c46_slashed_backer.svg");
   background-position: 0 0;
   background-repeat: repeat;
   background-size: cover;
@@ -1535,7 +1534,7 @@ blockquote {
 }
 
 .future_block_graph_item_highlight_border {
-  background-color: var(--_color-values---swatch--blue);
+  background-color: var(--_color-values---swatch--red, #FF2C2F);
   width: 8px;
   height: 100%;
   position: absolute;
@@ -3053,7 +3052,7 @@ blockquote {
   }
 
   .div-block-9 {
-    background-image: url("https://d3e54v103j8qbb.cloudfront.net/img/background-image.svg"), url("https://d3e54v103j8qbb.cloudfront.net/img/background-image.svg"), url("https://d3e54v103j8qbb.cloudfront.net/img/background-image.svg");
+    background-image: url("../assets/images/background-image.svg"), url("../assets/images/background-image.svg"), url("../assets/images/background-image.svg");
     background-position: 0 0, 50%, 0 0;
     background-size: contain, cover, auto;
     min-width: 100%;

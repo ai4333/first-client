@@ -1,0 +1,11 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.8849 32.8646L13.377 30.629L15.6126 29.1211" stroke="#171B33" stroke-opacity="0.5" stroke-width="0.846184" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35.2675 17.1655L36.7362 19.4271L34.4746 20.8958" stroke="#171B33" stroke-opacity="0.5" stroke-width="0.846184" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6.93353 25C6.93353 34.9811 15.023 43.0674 25.0009 43.0674C34.9804 43.0674 43.0684 34.9811 43.0684 25C43.0684 15.0237 34.9804 6.93262 25.0009 6.93262C15.023 6.93262 6.93353 15.0237 6.93353 25Z" stroke="#171B33" stroke-opacity="0.5" stroke-width="0.846184" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.5534 30.6336C16.67 31.6632 20.6565 32.281 25.0009 32.281C34.9804 32.281 43.0684 29.0224 43.0684 25.0001C43.0684 23.0817 41.2266 21.3362 38.2165 20.0355M36.644 19.4326C33.4997 18.3636 29.4372 17.7192 25.0009 17.7192C15.023 17.7192 6.93353 20.9798 6.93353 25.0001C6.93353 26.8707 8.68304 28.5761 11.5584 29.8654" stroke="#171B33" stroke-opacity="0.5" stroke-width="0.846184" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M25.0012 27.4267C26.3416 27.4267 27.4282 26.3401 27.4282 24.9997C27.4282 23.6593 26.3416 22.5728 25.0012 22.5728C23.6608 22.5728 22.5742 23.6593 22.5742 24.9997C22.5742 26.3401 23.6608 27.4267 25.0012 27.4267Z" fill="#171B33" stroke="white" stroke-width="1.26928"/>
+<path d="M25 1V49" stroke="#171B33" stroke-opacity="0.5" stroke-width="0.846184" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M49 25L1 25" stroke="#171B33" stroke-opacity="0.5" stroke-width="0.846184" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="32.1921" y="12.3567" width="4.70321" height="4.70321" transform="rotate(-90 32.1921 12.3567)" fill="#FF2C2F" stroke="white" stroke-width="0.846184"/>
+<rect x="11.8835" y="41.1272" width="4.70321" height="4.70321" transform="rotate(-90 11.8835 41.1272)" fill="#FF2C2F" stroke="white" stroke-width="0.846184"/>
+</svg>
