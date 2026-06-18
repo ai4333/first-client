@@ -1,6 +1,6 @@
 User-agent: *
 Disallow: /assets/
-Disallow: /public/
+Disallow: /public_assets/
 
 # Block common AI crawlers to prevent content scraping
 User-agent: GPTBot
