@@ -8,12 +8,12 @@
 class PremiumAudioController {
   constructor() {
     // Compressed MP3 Audio Paths (Relative to support file:// protocol)
-    this.ambientSrc = 'public_assets/audio/ambient-loop.mp3';
-    this.hoverSrc = 'public_assets/audio/hover.mp3';
-    this.secondaryHoverSrc = 'public_assets/audio/secondary-hover.mp3';
-    this.clickSrc = 'public_assets/audio/click.mp3';
-    this.transitionSrc = 'public_assets/audio/home-transition.mp3';
-    this.modalSrc = 'public_assets/audio/modal-open.mp3';
+    this.ambientSrc = '/public_assets/audio/ambient-loop.mp3';
+    this.hoverSrc = '/public_assets/audio/hover.mp3';
+    this.secondaryHoverSrc = '/public_assets/audio/secondary-hover.mp3';
+    this.clickSrc = '/public_assets/audio/click.mp3';
+    this.transitionSrc = '/public_assets/audio/home-transition.mp3';
+    this.modalSrc = '/public_assets/audio/modal-open.mp3';
 
     // State management
     this.isMuted = localStorage.getItem('gc-audio-muted') === 'true';
@@ -77,7 +77,7 @@ class PremiumAudioController {
   createAmbientElement() {
     this.ambientAudio = new Audio(this.ambientSrc);
     this.ambientAudio.loop = true;
-    this.ambientAudio.volume = this.isMuted ? 0 : 0.15; // Soft ambient volume
+    this.ambientAudio.volume = this.isMuted ? 0 : 0.4; // Slightly louder ambient volume
     this.ambientAudio.preload = 'auto';
   }
 
@@ -434,7 +434,7 @@ class PremiumAudioController {
         if (this.gainNode) {
           this.gainNode.gain.setValueAtTime(1, this.audioCtx.currentTime);
         }
-        this.ambientAudio.volume = 0.15;
+        this.ambientAudio.volume = 0.4;
         if (this.hasInteracted) {
           this.ambientAudio.play().catch(() => {});
         }
