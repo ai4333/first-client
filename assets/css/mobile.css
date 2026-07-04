@@ -1,0 +1,59 @@
+/* Geetha Constructions — mobile & tablet hardening layer.
+   Every rule lives inside a max-width media query, so desktop (>= 992px)
+   rendering is completely unaffected. Animations and layout are preserved;
+   these rules only fix fit, tap targets, and visibility on small screens. */
+
+@media (max-width: 991px) {
+  /* Safety net: decorative overhangs (hero video, line patches, off-canvas
+     sidebar) must never cause sideways scrolling on touch devices. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  /* 768–991px shows the desktop text logo, which is white on the white
+     header bar and therefore invisible. Give it the brand navy. */
+  .header_logo.hide-sm {
+    color: #171b33 !important;
+  }
+
+  /* The hamburger lines are a ~23px box — too small to tap reliably.
+     Extend the hit area with a pseudo-element so layout is untouched. */
+  .header_nav_trigger {
+    position: relative;
+  }
+
+  .header_nav_trigger::after {
+    content: "";
+    position: absolute;
+    inset: -14px;
+  }
+
+  /* iOS Safari zooms the page when a focused field is under 16px.
+     The fluid root font makes rem-based fields ~14px on phones. */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Cookie banner: full-width tidy card at the bottom instead of a
+     right-anchored floating box with a decorative side patch. */
+  .cookies {
+    max-width: none !important;
+    width: calc(100% - 2rem);
+    margin-inline: 1rem !important;
+  }
+
+  .cookies_patch {
+    display: none;
+  }
+
+  /* Footer legal / social rows can get cramped; let them wrap. */
+  .footer_bottom {
+    flex-wrap: wrap;
+    row-gap: 1rem;
+  }
+}
