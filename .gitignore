@@ -31,3 +31,6 @@ Thumbs.db
 
 # Useless/backup folders
 useless/
+
+# Local tooling
+.claude/
