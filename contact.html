@@ -2458,6 +2458,40 @@ opacity: 1;
   flex-direction: column;
   gap: clamp(1.5rem, 3vw, 2.5rem);
 }
+.contact_intro { position: relative; z-index: 2; max-width: 46rem; }
+.contact_actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+@media (max-width: 479px) { .contact_actions { grid-template-columns: 1fr; } }
+.contact_action {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid rgba(23,27,51,0.12);
+  border-radius: 0;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(.16,1,.3,1), box-shadow 0.3s ease, background 0.3s ease;
+}
+.contact_action:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -16px rgba(23,27,51,0.35); }
+.contact_action--call { background: var(--_color-values---swatch--navy, #171b33); border-color: transparent; }
+.contact_action--call .contact_action_label { color: rgba(255,255,255,0.55); }
+.contact_action--call .contact_action_value { color: #fff; }
+.contact_action--wa { background: #ffffff; }
+.contact_action--wa:hover { border-color: var(--_color-values---swatch--red, #ff2c2f); }
+.contact_action--wa .contact_action_label { color: rgba(23,27,51,0.5); }
+.contact_action--wa .contact_action_value { color: var(--_color-values---swatch--navy, #171b33); }
+.contact_action_label {
+  font-family: monospace; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.contact_action_value { font-size: 1.02rem; font-weight: 500; letter-spacing: -0.01em; }
+.contact_facts {
+  display: flex; flex-direction: column; gap: 1.4rem;
+  padding-top: 1.6rem; border-top: 1px solid rgba(23,27,51,0.12);
+}
+.contact_muted { color: rgba(23,27,51,0.45); }
 .contact_card {
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(23, 27, 51, 0.08);
@@ -2702,24 +2736,39 @@ opacity: 1;
 <section max-width="11clm" padding-top="Base" padding-bottom="" data-wf--about-hero--style-theme="base" class="lyt contact_hero"><div bg-type="" data-wf--background-lyt--color="transparent" class="lyt-bg"></div>
 
 
+<div class="contact_intro">
+  <div data-module="subhead" class="ink-accent tt1 mb4">CONTACT</div>
+  <h1 class="f6 mb5">LET&rsquo;S BUILD YOUR HOME<br/>IN BENGALURU</h1>
+  <p data-module="paragraph" class="ff1 ch38">Call or message and you will speak to the person who runs the site, not a call centre. We reply the same working day.</p>
+</div>
+
 <div class="contact_layout">
   <!-- Left Column: Contact details and interactive map asset -->
   <div class="contact_info_col">
-    <div class="contact_card">
-      <div class="contact_card_title">office headquarters</div>
-      <div class="contact_detail">Ground Floor, No. 49, I Cross,<br>Jnanabharati I Stage, Mariyappana Palya,<br>Bengaluru, Karnataka - 560056</div>
+    <div class="contact_actions">
+      <a class="contact_action contact_action--call" href="tel:+919606085872">
+        <span class="contact_action_label">Call us</span>
+        <span class="contact_action_value">+91 96060 85872</span>
+      </a>
+      <a class="contact_action contact_action--wa" href="https://wa.me/919606085872?text=Hi%20Geetha%20Constructions%2C%20I%27d%20like%20to%20discuss%20building%20a%20home." target="_blank" rel="noopener">
+        <span class="contact_action_label">WhatsApp</span>
+        <span class="contact_action_value">Message us now</span>
+      </a>
     </div>
-    <div class="contact_card">
-      <div class="contact_card_title">email inquiries</div>
-      <div class="contact_detail"><a href="mailto:info@geethaconstructions.com">info@geethaconstructions.com</a></div>
-    </div>
-    <div class="contact_card">
-      <div class="contact_card_title">call support</div>
-      <div class="contact_detail"><a href="tel:+918049123456">+91 80 4912 3456</a></div>
-    </div>
-    <div class="contact_map_wrapper">
-      <img class="contact_map_img" src="public_assets/karnataka_project_map.png" alt="Karnataka Geetha Office Location">
-      <div class="contact_map_overlay"></div>
+
+    <div class="contact_facts">
+      <div class="contact_fact">
+        <div class="contact_card_title">Office</div>
+        <div class="contact_detail">Ground Floor, No.&nbsp;49, I&nbsp;Cross,<br>Jnanabharati I Stage, Mariyappana Palya,<br>Bengaluru, Karnataka&nbsp;&ndash;&nbsp;560056</div>
+      </div>
+      <div class="contact_fact">
+        <div class="contact_card_title">Hours</div>
+        <div class="contact_detail">Monday&ndash;Saturday, 9am&ndash;7pm<br><span class="contact_muted">Sunday closed</span></div>
+      </div>
+      <div class="contact_fact">
+        <div class="contact_card_title">Email</div>
+        <div class="contact_detail"><a href="mailto:info@geethaconstruction.com">info@geethaconstruction.com</a></div>
+      </div>
     </div>
   </div>
 
