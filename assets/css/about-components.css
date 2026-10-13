@@ -390,3 +390,13 @@
     grid-row-start: 9;
   }
 }
+
+/* About-page override: the cloned standard_block section has a shorter intro
+   than the homepage one these rules came from, so bottom:130% threw the
+   tracer clear of the block and left a visible gap between sections.
+   Pull it down so it sits behind the heading (z-index:-1 already puts it
+   behind the text) and keep it on the right. */
+.standard_block_path.floating_right {
+  bottom: 100%;
+  right: 4%;
+}
