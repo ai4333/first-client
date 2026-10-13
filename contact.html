@@ -2459,6 +2459,35 @@ opacity: 1;
   gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 .contact_intro { position: relative; z-index: 2; max-width: 46rem; }
+.gc_form_intro {
+  color: rgba(23,27,51,0.6); font-size: 0.92rem; line-height: 1.55;
+  margin: 0 0 1.6rem; max-width: 34rem;
+}
+.gc_req, .gc_opt {
+  font-family: monospace; font-size: 0.6rem; letter-spacing: 0.12em;
+  text-transform: uppercase; margin-left: 0.45rem;
+}
+.gc_req { color: var(--_color-values---swatch--red, #ff2c2f); }
+.gc_opt { color: rgba(23,27,51,0.35); }
+.gc_hint { display: block; margin-top: 0.4rem; font-size: 0.76rem; color: rgba(23,27,51,0.45); }
+.gc_form_reassure {
+  margin: 0.9rem 0 0; font-size: 0.78rem; line-height: 1.5;
+  color: rgba(23,27,51,0.5);
+}
+.gc_next_steps {
+  list-style: none; margin: 2.4rem 0 0; padding: 1.6rem 0 0;
+  border-top: 1px solid rgba(23,27,51,0.12);
+  display: flex; flex-direction: column; gap: 1.05rem;
+}
+.gc_next_steps li { display: flex; gap: 0.9rem; align-items: flex-start; }
+.gc_next_steps strong { font-weight: 500; color: var(--gc-navy, #171b33); font-size: 0.95rem; }
+.gc_step_n {
+  flex: 0 0 auto; width: 1.55rem; height: 1.55rem;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--_color-values---swatch--navy, #171b33); color: #fff;
+  font-family: monospace; font-size: 0.7rem;
+}
+.gc_step_d { color: rgba(23,27,51,0.55); font-size: 0.84rem; line-height: 1.5; margin-top: 0.15rem; }
 .contact_actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2774,55 +2803,87 @@ opacity: 1;
 
   <!-- Right Column: Premium outline input contact form -->
   <div class="contact_form_col">
-    <h2 class="f4 ff1 fw0 mb6" style="color: var(--gc-navy); letter-spacing: -0.02em;">Send a Message</h2>
+    <h2 class="f4 ff1 fw0 mb4" style="color: var(--gc-navy); letter-spacing: -0.02em;">Tell us about your plot</h2>
+    <p class="gc_form_intro">Two required fields. Everything else helps us come prepared, but skip anything you&rsquo;re unsure about.</p>
     <div class="w-form">
       <form id="contact-form" name="contact-form" action="#" method="post" class="contact_form_grid">
+
         <div class="gc_field_group">
-          <label for="name" class="gc_label">full name</label>
-          <input type="text" class="gc_input" name="name" id="name" placeholder="John Doe" required>
+          <label for="name" class="gc_label">Your name <span class="gc_req">required</span></label>
+          <input type="text" class="gc_input" name="name" id="name" autocomplete="name" placeholder="" required>
         </div>
+
         <div class="gc_field_group">
-          <label for="email" class="gc_label">email address</label>
-          <input type="email" class="gc_input" name="email" id="email" placeholder="john@example.com" required>
+          <label for="phone" class="gc_label">Phone <span class="gc_req">required</span></label>
+          <input type="tel" class="gc_input" name="phone" id="phone" autocomplete="tel" inputmode="tel" placeholder="" required>
+          <span class="gc_hint">We call back. We don&rsquo;t add you to any list.</span>
         </div>
+
         <div class="gc_field_group">
-          <label for="phone" class="gc_label">phone number</label>
-          <input type="tel" class="gc_input" name="phone" id="phone" placeholder="+91 98765 43210" required>
+          <label for="email" class="gc_label">Email <span class="gc_opt">optional</span></label>
+          <input type="email" class="gc_input" name="email" id="email" autocomplete="email" inputmode="email" placeholder="">
         </div>
+
         <div class="gc_field_group">
-          <label for="location" class="gc_label">project location</label>
-          <select class="gc_select" name="location" id="location" required>
-            <option value="" disabled selected>Select Location</option>
-            <option value="bangalore">Bangalore (Headquarters)</option>
-            <option value="mysore">Mysore</option>
-            <option value="mangalore">Mangalore</option>
-            <option value="other">Other (Karnataka)</option>
+          <label for="location" class="gc_label">Where is the plot? <span class="gc_opt">optional</span></label>
+          <select class="gc_select" name="location" id="location">
+            <option value="" selected>Select an area</option>
+            <option>Nagarbhavi</option>
+            <option>Jnanabharathi</option>
+            <option>Kengeri</option>
+            <option>Rajarajeshwari Nagar</option>
+            <option>Mariyappanapalya</option>
+            <option>Vijayanagar</option>
+            <option>Elsewhere in Bengaluru</option>
+            <option>Outside Bengaluru</option>
+            <option>Haven&rsquo;t bought the plot yet</option>
           </select>
         </div>
-        <div class="gc_field_group form_full_width">
-          <label for="budget" class="gc_label">estimated budget</label>
-          <select class="gc_select" name="budget" id="budget" required>
-            <option value="" disabled selected>Select Budget Range</option>
-            <option value="1.5cr-3cr">₹1.5Cr - ₹3Cr</option>
-            <option value="3cr-5cr">₹3Cr - ₹5Cr</option>
-            <option value="5cr-10cr">₹5Cr - ₹10Cr</option>
-            <option value="10cr+">₹10Cr+</option>
+
+        <div class="gc_field_group">
+          <label for="stage" class="gc_label">Where are you now? <span class="gc_opt">optional</span></label>
+          <select class="gc_select" name="stage" id="stage">
+            <option value="" selected>Select a stage</option>
+            <option>Just exploring</option>
+            <option>Have a plot, need a design</option>
+            <option>Have drawings, need a builder</option>
+            <option>Ready to start</option>
           </select>
         </div>
-        <div class="gc_field_group form_full_width">
-          <label for="message" class="gc_label">project message</label>
-          <textarea class="gc_textarea" name="message" id="message" placeholder="Tell us about your architectural design preferences, land parameters, or other specifications..." required></textarea>
+
+        <div class="gc_field_group">
+          <label for="budget" class="gc_label">Rough budget <span class="gc_opt">optional</span></label>
+          <select class="gc_select" name="budget" id="budget">
+            <option value="" selected>Not sure yet</option>
+            <option>Under &#8377;50 lakh</option>
+            <option>&#8377;50 lakh &ndash; &#8377;1 crore</option>
+            <option>&#8377;1 &ndash; 2 crore</option>
+            <option>&#8377;2 crore and above</option>
+          </select>
         </div>
+
+        <div class="gc_field_group form_full_width">
+          <label for="message" class="gc_label">Anything you want us to know? <span class="gc_opt">optional</span></label>
+          <textarea class="gc_textarea" name="message" id="message" rows="3" placeholder="Site size, number of floors, when you&rsquo;d like to start &mdash; whatever is on your mind."></textarea>
+        </div>
+
         <div class="form_full_width gc_submit_wrapper">
           <button type="submit" class="gc_submit_btn">
-            <span>Send Message</span>
+            <span>Send enquiry</span>
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M0.367357 12L0.367357 10.9608L10.2261 10.9608L4.63115e-07 0.734714L0.734715 -4.92421e-07L10.9608 10.2261L10.9608 0.367357L12 0.367357L12 12L0.367357 12Z" fill="currentColor"></path>
             </svg>
           </button>
+          <p class="gc_form_reassure">We reply the same working day. Your details stay with us &mdash; no marketing lists, no sharing.</p>
         </div>
       </form>
     </div>
+
+    <ol class="gc_next_steps">
+      <li><span class="gc_step_n">1</span><div><strong>We call you back</strong><div class="gc_step_d">Same working day, from the number above.</div></div></li>
+      <li><span class="gc_step_n">2</span><div><strong>We visit the plot</strong><div class="gc_step_d">Free, no obligation. We look at access, soil and setbacks.</div></div></li>
+      <li><span class="gc_step_n">3</span><div><strong>You get a written estimate</strong><div class="gc_step_d">Itemised, with the material grades named.</div></div></li>
+    </ol>
   </div>
 </div>
 
