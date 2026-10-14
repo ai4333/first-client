@@ -4009,10 +4009,22 @@ const PHOTOS = [
   ['g23','Door and trim detail']
 ];
 
-const VISIBLE = 16, DEPTH = 50, MAX_H = 8, MAX_V = 8;
-const FADE = { inS: 0.05, inE: 0.25, outS: 0.40, outE: 0.43 };
-const BLUR = { inS: 0.00, inE: 0.10, outS: 0.40, outE: 0.43, max: 8.0 };
-const SPEED = 1.2;
+// Tuned for a packed corridor rather than a few drifting planes.
+//   VISIBLE  how many planes exist at once. The fade window below keeps
+//            roughly 40% of them on screen, so 56 planes reads as ~22 photos
+//            in frame at any moment instead of the 6 it was showing.
+//   PLANE    base height in world units. Was 2, which at the near end of the
+//            corridor filled half the viewport with one photograph -- that is
+//            the "very large thing" problem.
+//   SPREAD   radius of the spiral the planes are scattered on.
+//   FADE.out pushed much later so photographs travel right up to the camera
+//            and sweep past the edges, instead of evaporating in the middle
+//            distance.
+const VISIBLE = 180, DEPTH = 50, SPREAD = 4.8, PLANE = 2.1;
+const FADE = { inS: 0.04, inE: 0.16, outS: 0.44, outE: 0.485 };
+const BLUR = { inS: 0.00, inE: 0.13, outS: 0.44, outE: 0.485, max: 5.0 };
+const SPEED = 2.4;
+const AUTO_ACCEL = 0.9;
 
 const overlay = document.createElement('div');
 overlay.id = 'gc-photodump';
@@ -4076,7 +4088,9 @@ function makeMaterial(T) {
 
         vec3 pos = position;
 
-        float curveIntensity = scrollForce * 0.3;
+        // 0.3 curled the photographs into shells at these speeds. They should
+        // bow, not roll up -- they are meant to read as photographs.
+        float curveIntensity = scrollForce * 0.07;
 
         float distanceFromCenter = length(pos.xy);
         float curve = distanceFromCenter * distanceFromCenter * curveIntensity;
@@ -4135,12 +4149,15 @@ function makeMaterial(T) {
   });
 }
 
+// The original scattered planes on two short repeating rings, so every third
+// one sat dead centre and the rest clustered -- which is why the frame looked
+// sparse and lopsided. A golden-angle spiral with sqrt radius spreads them
+// evenly over the area instead, and the x stretch matches the viewport being
+// wider than it is tall.
 function spatial(i) {
-  const hAngle = (i * 2.618) % (Math.PI * 2);
-  const vAngle = (i * 1.618 + Math.PI / 3) % (Math.PI * 2);
-  const hRadius = (i % 3) * 1.2;
-  const vRadius = ((i + 1) % 4) * 0.8;
-  return { x: Math.sin(hAngle) * hRadius * MAX_H / 3, y: Math.cos(vAngle) * vRadius * MAX_V / 4 };
+  const angle = i * 2.399963229728653;          // golden angle
+  const r = Math.sqrt((i + 0.5) / VISIBLE) * SPREAD;
+  return { x: Math.cos(angle) * r * 1.5, y: Math.sin(angle) * r };
 }
 
 async function boot() {
@@ -4171,7 +4188,9 @@ async function boot() {
     }, undefined, () => res(null));
   })));
 
-  const geo = new THREE.PlaneGeometry(1, 1, 32, 32);
+  // 16x16 is still smooth enough for the cloth curve, at a quarter of the
+  // vertices -- which matters now that there are 56 planes rather than 16.
+  const geo = new THREE.PlaneGeometry(1, 1, 16, 16);
   for (let i = 0; i < VISIBLE; i++) {
     const mat = makeMaterial(THREE);
     const mesh = new THREE.Mesh(geo, mat);
@@ -4182,14 +4201,24 @@ async function boot() {
     if (tex && tex.image) mat.uniforms.texelSize.value.set(1 / tex.image.width, 1 / tex.image.height);
     // every photograph is 3:4, so the plane is taller than it is wide
     const aspect = tex && tex.image ? tex.image.width / tex.image.height : 0.75;
-    mesh.scale.set(aspect > 1 ? 2 * aspect : 2, aspect > 1 ? 2 : 2 / aspect, 1);
+    mesh.scale.set(aspect > 1 ? PLANE * aspect : PLANE, aspect > 1 ? PLANE : PLANE / aspect, 1);
     mesh.position.set(p.x, p.y, 0);
     scene.add(mesh);
-    planes.push({ mesh, mat, z: (DEFAULT_STEP(i)), imageIndex, x: p.x, y: p.y });
+    planes.push({ mesh, mat, z: startZ(i), imageIndex, x: p.x, y: p.y });
   }
-  function DEFAULT_STEP(i) { return ((DEPTH / VISIBLE) * i) % DEPTH; }
+  // Depth must NOT be a function of the same index as the spiral position.
+  // With z = (DEPTH/VISIBLE)*i the low-index planes -- the ones nearest the
+  // centre of the spiral -- were always the most distant, so the middle of
+  // the frame stayed permanently empty and the corridor read as a ring with
+  // a hole punched through it. A golden-ratio sequence spreads depth evenly
+  // and independently of where a plane sits on screen.
+  function startZ(i) { return DEPTH * ((i * 0.6180339887498949) % 1); }
 
   resize();
+  // small inspection hook: lets the scene be measured from the console
+  // (how many photographs are actually on screen, how much of the frame they
+  // cover) instead of guessing from a screenshot.
+  window.__gcGallery = { planes, camera, renderer, scene, THREE, cfg: { VISIBLE, DEPTH, SPREAD, PLANE, FADE, BLUR } };
   ready = true;
   booting = false;
   hintEl.textContent = 'Scroll or drag to move through · click a photograph to enlarge';
@@ -4226,7 +4255,7 @@ function frame() {
   const time = clock.getElapsedTime();
 
   if (Date.now() - lastInput > 3000) autoPlay = true;
-  if (autoPlay) velocity += 0.3 * delta;
+  if (autoPlay) velocity += AUTO_ACCEL * delta;
   velocity *= 0.95;
 
   const half = DEPTH / 2;
@@ -4253,7 +4282,7 @@ function frame() {
     p.mat.uniforms.opacity.value = opacity;
     p.mat.uniforms.blurAmount.value = blur;
     p.mat.uniforms.time.value = time;
-    p.mat.uniforms.scrollForce.value = velocity;
+    p.mat.uniforms.scrollForce.value = Math.max(-2, Math.min(2, velocity));
     p.mesh.visible = opacity > 0.002;
   }
 
@@ -4267,7 +4296,7 @@ function applyTexture(p) {
   if (tex.image) {
     p.mat.uniforms.texelSize.value.set(1 / tex.image.width, 1 / tex.image.height);
     const aspect = tex.image.width / tex.image.height;
-    p.mesh.scale.set(aspect > 1 ? 2 * aspect : 2, aspect > 1 ? 2 : 2 / aspect, 1);
+    p.mesh.scale.set(aspect > 1 ? PLANE * aspect : PLANE, aspect > 1 ? PLANE : PLANE / aspect, 1);
   }
 }
 
@@ -4276,7 +4305,7 @@ function nudge(v) { velocity += v; autoPlay = false; lastInput = Date.now(); }
 
 overlay.addEventListener('wheel', (e) => {
   e.preventDefault(); e.stopPropagation();
-  nudge(e.deltaY * 0.01 * SPEED);
+  nudge(e.deltaY * 0.022 * SPEED);
 }, { passive: false });
 
 document.addEventListener('keydown', (e) => {
