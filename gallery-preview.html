@@ -4020,9 +4020,9 @@ const PHOTOS = [
 //   FADE.out pushed much later so photographs travel right up to the camera
 //            and sweep past the edges, instead of evaporating in the middle
 //            distance.
-const VISIBLE = 180, DEPTH = 50, SPREAD = 4.8, PLANE = 2.1;
+const VISIBLE = 110, DEPTH = 50, SPREAD = 4.8, PLANE = 2.1;
 const FADE = { inS: 0.04, inE: 0.16, outS: 0.44, outE: 0.485 };
-const BLUR = { inS: 0.00, inE: 0.13, outS: 0.44, outE: 0.485, max: 5.0 };
+const BLUR = { inS: 0.00, inE: 0.13, outS: 0.44, outE: 0.485, max: 3.0 };
 const SPEED = 2.4;
 const AUTO_ACCEL = 0.9;
 
@@ -4054,6 +4054,16 @@ let renderer, scene, camera, raycaster, clock;
 let planes = [];                 // { mesh, mat, z, imageIndex }
 let textures = [];
 let velocity = 0, autoPlay = true, lastInput = Date.now();
+
+// Quality ladder. I cannot measure frame rate on anyone else's machine, so
+// the page measures itself and steps down until it is comfortable. It only
+// ever steps down, so it cannot oscillate.
+const QUALITY = [
+  { ratio: 1.0,  planes: 110 },
+  { ratio: 0.85, planes: 78  },
+  { ratio: 0.7,  planes: 52  }
+];
+let tier = 0, fpsWindow = [], lastTierChange = 0;
 let rafId = null, hovered = null;
 
 function supportsWebGL() {
@@ -4129,8 +4139,12 @@ function makeMaterial(T) {
         if (blurAmount > 0.0) {
           vec4 blurred = vec4(0.0);
           float total = 0.0;
-          for (float x = -2.0; x <= 2.0; x += 1.0) {
-            for (float y = -2.0; y <= 2.0; y += 1.0) {
+          // 3x3, not 5x5. The original's 25 taps ran on every blurred
+          // fragment, including the planes nearest the camera which cover
+          // more than the whole screen -- 124M texture fetches per frame at
+          // 60fps, which is why it dragged.
+          for (float x = -1.0; x <= 1.0; x += 1.0) {
+            for (float y = -1.0; y <= 1.0; y += 1.0) {
               vec2 offset = vec2(x, y) * texelSize * blurAmount;
               float weight = 1.0 / (1.0 + length(vec2(x, y)));
               blurred += texture2D(map, vUv + offset) * weight;
@@ -4167,7 +4181,10 @@ async function boot() {
 
   renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setClearAlpha(0);
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  // A retina backing store quadruples every fragment, and this scene is
+  // fill-rate bound rather than detail bound -- the photographs are moving
+  // and half of them are deliberately blurred, so 1x is not visibly softer.
+  renderer.setPixelRatio(Math.min(devicePixelRatio, QUALITY[tier].ratio));
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(55, 1, 0.1, 200);
   camera.position.set(0, 0, 0);
@@ -4218,7 +4235,7 @@ async function boot() {
   // small inspection hook: lets the scene be measured from the console
   // (how many photographs are actually on screen, how much of the frame they
   // cover) instead of guessing from a screenshot.
-  window.__gcGallery = { planes, camera, renderer, scene, THREE, cfg: { VISIBLE, DEPTH, SPREAD, PLANE, FADE, BLUR } };
+  window.__gcGallery = { planes, camera, renderer, scene, THREE, cfg: { VISIBLE, DEPTH, SPREAD, PLANE, FADE, BLUR }, quality: () => ({ tier, q: QUALITY[tier] }) };
   ready = true;
   booting = false;
   hintEl.textContent = 'Scroll or drag to move through · click a photograph to enlarge';
@@ -4248,10 +4265,39 @@ function ramp(np) {
   return [Math.max(0, Math.min(1, opacity)), Math.max(0, Math.min(BLUR.max, blur))];
 }
 
+function applyTier() {
+  const q = QUALITY[tier];
+  renderer.setPixelRatio(Math.min(devicePixelRatio, q.ratio));
+  resize();
+  for (let i = 0; i < planes.length; i++) {
+    planes[i].off = i >= q.planes;
+    if (planes[i].off) planes[i].mesh.visible = false;
+  }
+}
+
+function watchFps(rawDelta) {
+  // Ignore frames that were not really rendered -- a backgrounded or
+  // throttled tab reports multi-second deltas and would drop the quality for
+  // no reason.
+  if (rawDelta < 0.004 || rawDelta > 0.1) return;
+  fpsWindow.push(1 / rawDelta);
+  if (fpsWindow.length < 45) return;
+  const avg = fpsWindow.reduce((a, b) => a + b, 0) / fpsWindow.length;
+  fpsWindow.length = 0;
+  const now = performance.now();
+  if (avg < 48 && tier < QUALITY.length - 1 && now - lastTierChange > 1500) {
+    tier += 1;
+    lastTierChange = now;
+    applyTier();
+  }
+}
+
 function frame() {
   rafId = requestAnimationFrame(frame);
   if (!ready) return;
-  const delta = Math.min(clock.getDelta(), 0.05);
+  const raw = clock.getDelta();
+  watchFps(raw);
+  const delta = Math.min(raw, 0.05);
   const time = clock.getElapsedTime();
 
   if (Date.now() - lastInput > 3000) autoPlay = true;
@@ -4263,6 +4309,7 @@ function frame() {
 
   for (let i = 0; i < planes.length; i++) {
     const p = planes[i];
+    if (p.off) continue;
     let z = p.z + velocity * delta * 10;
     if (z >= DEPTH) {
       const wraps = Math.floor(z / DEPTH);
@@ -4364,8 +4411,21 @@ canvas.addEventListener('click', () => {
 window.addEventListener('resize', resize);
 
 // ---- open / close ------------------------------------------------------
+// The portfolio page runs a MapLibre canvas of its own. While the gallery is
+// open it is completely hidden behind an opaque overlay, but the browser
+// still composites it and it still holds a second live WebGL context. Park it
+// for the duration.
+let mapParked = null;
+function parkMap(park) {
+  const m = document.querySelector('.maplibregl-map') || document.getElementById('geetha-map');
+  if (!m) return;
+  if (park) { mapParked = m.style.visibility; m.style.visibility = 'hidden'; }
+  else if (mapParked !== null) { m.style.visibility = mapParked; mapParked = null; }
+}
+
 async function open() {
   overlay.hidden = false;
+  parkMap(true);
   requestAnimationFrame(() => overlay.classList.add('is-open'));
   document.documentElement.style.overflow = 'hidden';
   if (!ready && !booting) {
@@ -4377,6 +4437,7 @@ async function open() {
   frame();
 }
 function close() {
+  parkMap(false);
   overlay.classList.remove('is-open');
   document.documentElement.style.overflow = '';
   setTimeout(() => { overlay.hidden = true; }, 320);
