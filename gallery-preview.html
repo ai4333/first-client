@@ -4012,7 +4012,12 @@ const PHOTOS = [
 // These are the component's own values, not mine. GalleryScene's defaults are
 // what actually run, because InfiniteGallery never forwards speed/visibleCount
 // from the demo -- so eight planes at scale 2, speed 1.
-const VISIBLE = 8, DEPTH = 50, MAX_H = 8, MAX_V = 8, PLANE = 2;
+// Everything here is the component's own value except VISIBLE. Eight planes
+// meant barely three photographs on screen at a time, which is no way to show
+// twenty-four. More planes over the same depth range means they arrive more
+// often at the same speed -- the stream gets denser, not faster, and nothing
+// about the size, motion, blur or spacing of any single photograph changes.
+const VISIBLE = 40, DEPTH = 50, MAX_H = 8, MAX_V = 8, PLANE = 2;
 const FADE = { inS: 0.05, inE: 0.25, outS: 0.40, outE: 0.43 };
 const BLUR = { inS: 0.00, inE: 0.10, outS: 0.40, outE: 0.43, max: 8.0 };
 const SPEED = 1;
@@ -4051,9 +4056,9 @@ let velocity = 0, autoPlay = true, lastInput = Date.now();
 // the page measures itself and steps down until it is comfortable. It only
 // ever steps down, so it cannot oscillate.
 const QUALITY = [
-  { ratio: 2.0,  planes: 8 },
-  { ratio: 1.0,  planes: 8 },
-  { ratio: 1.0,  planes: 6 }
+  { ratio: 1.5,  planes: 40 },
+  { ratio: 1.0,  planes: 40 },
+  { ratio: 1.0,  planes: 26 }
 ];
 let tier = 0, fpsWindow = [], lastTierChange = 0;
 let rafId = null, hovered = null;
