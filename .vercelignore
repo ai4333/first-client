@@ -1,0 +1,6 @@
+# Working notes and the original scrape leftovers: kept in the repo,
+# never served to the public.
+PROJECT_STATE.md
+useless/
+all_external_urls.txt
+make_offline.py
