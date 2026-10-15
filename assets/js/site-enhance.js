@@ -151,7 +151,21 @@
     });
   }
 
-  function boot() { loader(); prompt(); }
+  // ------------------------------------------------------------ device tier
+  // The signature look costs real GPU work: 27 scroll-scrubbed text blocks
+  // animate filter: blur() per character, which a laptop absorbs and a
+  // budget Android does not. Rather than water the design down for everyone,
+  // weak devices drop the blur only -- the movement, stagger and timing all
+  // still run, so it still reads as the same site.
+  function tier() {
+    var mem   = navigator.deviceMemory || 8;
+    var cores = navigator.hardwareConcurrency || 8;
+    var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    var weak = mem <= 4 || cores <= 4 || (coarse && innerWidth < 900);
+    if (weak || reduced) document.documentElement.classList.add('gc-lite');
+  }
+
+  function boot() { tier(); loader(); prompt(); }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();

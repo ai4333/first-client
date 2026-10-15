@@ -123,3 +123,18 @@ html.gc-loading, html.gc-loading body { overflow: hidden !important; }
 @media (max-width: 600px) {
   #gc-prompt { left: 1rem; right: 1rem; max-width: none; }
 }
+
+
+/* ---------- 4. lighter mode for weak devices ---------------------------
+   Only the blur goes. Opacity, offset, stagger and easing are untouched, so
+   the choreography is identical -- it simply stops asking the GPU to blur
+   every character on every scroll frame, which is the single most expensive
+   thing this site does on a phone. Desktop never sees this. */
+html.gc-lite [data-module="heading"] *,
+html.gc-lite [data-module="paragraph"] *,
+html.gc-lite [data-module="subhead"] *,
+html.gc-lite [data-module="hero"] h1 *,
+html.gc-lite .hero_patch,
+html.gc-lite .strategy_content * {
+  filter: none !important;
+}
