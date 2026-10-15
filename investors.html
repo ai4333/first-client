@@ -3101,7 +3101,11 @@ opacity: 1;
      page landed on an invisible sheet. A scripted .click() still worked,
      because it skips hit-testing -- which is how it went unnoticed. */
   .gc_dump { background: #fff; }
-  #gc-gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+  /* z-index 0 on purpose: out.css carries a blanket `canvas { z-index: 20 }`,
+     which put this canvas on top of the gallery header and swallowed every
+     click on the close button. The ID outranks the element selector. */
+  #gc-gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; z-index: 0; }
+  #gc-photodump .gc_dump_head, #gc-photodump .gc_dump_hint { z-index: 5; }
   .gc_dump_head { background: linear-gradient(to bottom,#fff 40%,rgba(255,255,255,0.9) 70%,rgba(255,255,255,0)); }
   .gc_dump[hidden],
   .gc_lightbox[hidden] { display: none; }
