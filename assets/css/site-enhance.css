@@ -1,15 +1,8 @@
 /* Loading screen, persistent header, enquiry prompt.
    Brand only: white paper, navy ink, red marker, square corners. */
 
-/* ---------- 1. the header stays put ------------------------------------
-   app.js sets inline opacity/pointer-events on scroll to fade the header
-   away going down. !important in a stylesheet outranks an inline style that
-   has no !important of its own, so this pins it without touching the 540KB
-   minified bundle. */
-header.header {
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
+/* (1. header pin removed: the floating contact button is the always-visible
+   element. The header goes back to app.js hiding it on scroll-down.) */
 
 /* ---------- 2. loading screen ----------------------------------------- */
 html.gc-loading, html.gc-loading body { overflow: hidden !important; }

@@ -71,13 +71,34 @@
         };
         v.addEventListener('loadeddata', go);
         v.addEventListener('canplay', go);
-        if (v.networkState === v.NETWORK_NO_SOURCE || v.networkState === v.NETWORK_EMPTY) v.load();
+        // No v.load() here: it aborts any play() already in flight, which was
+        // itself one of the ways the hero ended up stuck.
       }
       return;
     }
 
     var p = v.play();
-    if (p && typeof p.catch === 'function') p.catch(function () { /* recovered on gesture */ });
+    if (p && typeof p.catch === 'function') {
+      p.then(function () { rejects.set(v, 0); })
+       .catch(function () { retryRejected(v); });
+    }
+  }
+
+  // THE bug behind "the hero doesn't play until I scroll away and back".
+  // A play() that is rejected at load -- interrupted, power-saved, raced by
+  // another call -- fires no 'pause' event, because the video was never
+  // playing. So the pause handler below never ran, and the element just sat
+  // there until a visibility change made the observer call play() again.
+  // Retry it directly, backing off, for as long as we still want it running.
+  var rejects = new WeakMap();
+  function retryRejected(v) {
+    var n = (rejects.get(v) || 0) + 1;
+    rejects.set(v, n);
+    if (n > 10) return;
+    var delay = Math.min(2000, 150 * n);
+    setTimeout(function () {
+      if (wantPlaying.has(v) && v.paused && !document.hidden) attempt(v);
+    }, delay);
   }
 
   // Chrome can pause a muted background video by itself to save power. If we
@@ -171,6 +192,26 @@
   window.addEventListener('load', setup);
   setTimeout(setup, 600);
   setTimeout(setup, 2000);
+
+  // For the first ten seconds, look every 400ms for a video we want running
+  // that is paused but ready to play, and start it. Events are the primary
+  // mechanism; this is the net under them for the window in which Webflow,
+  // Taxi, the loading screen and app.js's intro are all touching the hero.
+  var watchStart = Date.now();
+  var watch = setInterval(function () {
+    if (Date.now() - watchStart > 10000) { clearInterval(watch); return; }
+    if (document.hidden) return;
+    document.querySelectorAll('video').forEach(function (v) {
+      if (wantPlaying.has(v) && v.paused && v.readyState >= 2 && !v.ended) attempt(v);
+    });
+  }, 400);
+
+  // Let other scripts (the loading screen) ask for a nudge.
+  window.__gcKickVideos = function () {
+    document.querySelectorAll('video').forEach(function (v) {
+      if (wantPlaying.has(v) && v.paused) { rejects.set(v, 0); attempt(v); }
+    });
+  };
 
   // Returning to the tab, or arriving via bfcache, can leave videos paused.
   document.addEventListener('visibilitychange', function () {

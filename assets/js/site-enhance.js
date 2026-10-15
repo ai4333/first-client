@@ -64,6 +64,7 @@
       var wait = Math.max(0, MIN_SHOW - (Date.now() - born));
       setTimeout(function () {
         n.classList.add('is--gone');
+        if (window.__gcKickVideos) window.__gcKickVideos();
         document.documentElement.classList.remove('gc-loading');
         try { sessionStorage.setItem('gcLoaded', '1'); } catch (e) {}
         setTimeout(function () { n.remove(); }, 650);
