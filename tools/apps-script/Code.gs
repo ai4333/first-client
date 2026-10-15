@@ -11,7 +11,7 @@
  */
 
 var SHEET_NAME = 'Leads';
-var NOTIFY_EMAIL = '';   // optional: an address to alert on every new lead
+var NOTIFY_EMAIL = 'geethaconstructionblr@gmail.com';   // alerted on every new lead
 
 var HEADERS = ['Received', 'Name', 'Phone', 'Email', 'Plot area', 'Stage',
                'Budget', 'Message', 'Page', 'Referrer', 'Status'];
