@@ -189,3 +189,56 @@ html.gc-loading #gc-fab { opacity: 0 !important; }
 @media (prefers-reduced-motion: reduce) {
   #gc-fab, .gc_fab_label { transition: none; }
 }
+
+/* ---------- 6. the Enter screen -----------------------------------------
+   Until the visitor presses Enter the page behind is kept invisible (layout
+   untouched, so app.js still measures correctly), which also covers the brief
+   moment before the loading screen element exists. */
+html.gc-gate { background: #fff; }
+html.gc-gate body { visibility: hidden; }
+html.gc-gate #gc-loader { visibility: visible; }
+
+#gc-loader { cursor: default; }
+#gc-loader.is--ready { cursor: pointer; }
+
+/* the bar runs while loading, then fills and gives way to the button */
+#gc-loader.is--ready .gc_load_bar i {
+  animation: none; width: 100%; transform: none;
+  transition: width .4s ease;
+}
+#gc-loader.is--ready .gc_load_bar { opacity: 0; transition: opacity .35s ease .25s; }
+
+.gc_enter {
+  margin-top: .4rem;
+  display: inline-flex; align-items: center; gap: .85rem;
+  background: var(--_color-values---swatch--red, #ff2c2f); color: #fff;
+  border: 0; border-radius: 0; cursor: pointer;
+  padding: .95rem 1.6rem;
+  font-family: monospace; font-size: .7rem; letter-spacing: .28em; text-transform: uppercase;
+  opacity: 0; transform: translateY(8px); pointer-events: none;
+  transition: opacity .5s ease .2s, transform .5s cubic-bezier(.16,1,.3,1) .2s, background .25s ease;
+}
+#gc-loader.is--ready .gc_enter { opacity: 1; transform: none; pointer-events: auto; }
+.gc_enter:hover { background: var(--_color-values---swatch--navy, #171b33); }
+.gc_enter:focus-visible { outline: 2px solid var(--_color-values---swatch--navy, #171b33); outline-offset: 4px; }
+
+/* a small live sound-wave, so "sound on" reads without a word */
+.gc_enter_wave { display: inline-flex; align-items: center; gap: 2px; height: 12px; }
+.gc_enter_wave i { display: block; width: 2px; height: 100%; background: currentColor; transform-origin: center; animation: gcWave 1s ease-in-out infinite; }
+.gc_enter_wave i:nth-child(2) { animation-delay: .15s; }
+.gc_enter_wave i:nth-child(3) { animation-delay: .3s; }
+.gc_enter_wave i:nth-child(4) { animation-delay: .45s; }
+@keyframes gcWave { 0%,100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+
+.gc_enter_quiet {
+  background: none; border: 0; cursor: pointer; padding: .4rem .2rem;
+  font-family: monospace; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(23,27,51,.42);
+  opacity: 0; pointer-events: none; transition: opacity .5s ease .45s, color .2s ease;
+}
+#gc-loader.is--ready .gc_enter_quiet { opacity: 1; pointer-events: auto; }
+.gc_enter_quiet:hover { color: var(--_color-values---swatch--navy, #171b33); }
+
+@media (prefers-reduced-motion: reduce) {
+  .gc_enter_wave i { animation: none; transform: scaleY(.7); }
+}

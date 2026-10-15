@@ -33,13 +33,66 @@
                 window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ---------------------------------------------------------------- loader
+  // An Enter screen rather than a loader that lifts by itself.
+  //
+  // No browser lets a site start sound on its own -- Chrome, Safari and
+  // Firefox all require a click or tap first. The Enter press IS that click,
+  // so sound can start the moment the visitor arrives. It also starts the
+  // hero video inside a user gesture, which is the one way of starting it
+  // that every browser honours, battery-saver modes included -- rather than
+  // hoping an autoplay call is accepted and retrying when it is not.
+  //
+  // While the screen is up, every GSAP animation is held (see the inline
+  // script after gsap loads), so the hero's opening plays when they enter
+  // instead of finishing unseen behind this screen.
+  //
+  // Shown once per session. Crawlers skip it: the content behind is identical,
+  // and Google treats a full-screen entry overlay as an interstitial.
+  var MIN_GATE = 1700;     // let the house finish drawing
+  var MAX_READY = 6000;    // offer Enter by now, ready or not
+  var BOT = /bot|crawl|spider|slurp|lighthouse|pagespeed|headless/i.test(navigator.userAgent);
+  var gated = false;
+
+  // Decided now, while <head> is still being parsed -- not at DOMContentLoaded.
+  // The GSAP hold runs mid-body, so the class has to exist before it does.
+  (function preGate() {
+    var seen = false;
+    try { seen = !!sessionStorage.getItem('gcLoaded'); } catch (e) {}
+    if (!seen && !BOT) document.documentElement.classList.add('gc-gate', 'gc-loading');
+  })();
+
+  function heroVideo() { return document.querySelector('.hero_video video'); }
+
+  function releaseAnimations() {
+    try { if (window.gsap) window.gsap.globalTimeline.resume(); } catch (e) {}
+    document.documentElement.classList.remove('gc-gate');
+  }
+
+  function startSound(on) {
+    var A = window.GCAudioController;
+    if (!A) return;
+    try {
+      A.hasInteracted = true;
+      if (on) {
+        if (A.isMuted && A.toggleMute) A.toggleMute();
+        A.unlockAudioContext && A.unlockAudioContext();
+        if (A.ambientAudio) { A.ambientAudio.volume = 0.4; A.ambientAudio.play().catch(function () {}); }
+      } else if (!A.isMuted && A.toggleMute) {
+        A.toggleMute();
+      }
+      A.updateIconState && A.updateIconState();
+    } catch (e) {}
+  }
+
   function loader() {
     if (document.getElementById('gc-loader')) return;
-    if (sessionStorage.getItem('gcLoaded')) return;   // once per session
+    if (!document.documentElement.classList.contains('gc-gate')) return;
+    gated = true;
 
     var n = document.createElement('div');
     n.id = 'gc-loader';
-    n.setAttribute('aria-hidden', 'true');
+    n.setAttribute('role', 'dialog');
+    n.setAttribute('aria-label', 'Geetha Constructions');
     n.innerHTML =
       '<div class="gc_load_inner">' +
         '<svg class="gc_load_house" viewBox="0 0 120 92" fill="none" aria-hidden="true">' +
@@ -52,37 +105,69 @@
         '</svg>' +
         '<div class="gc_load_word">GEETHA<span>CONSTRUCTIONS</span></div>' +
         '<div class="gc_load_bar"><i></i></div>' +
+        '<button type="button" class="gc_enter" id="gc-enter" disabled>' +
+          '<span class="gc_enter_label">Enter</span>' +
+          '<span class="gc_enter_wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>' +
+        '</button>' +
+        '<button type="button" class="gc_enter_quiet" id="gc-enter-quiet" disabled>Enter without sound</button>' +
       '</div>';
-    document.documentElement.classList.add('gc-loading');
     (document.body || document.documentElement).appendChild(n);
 
-    var born = Date.now(), done = false;
+    var born = Date.now(), ready = false, done = false;
+    var btn = n.querySelector('#gc-enter'), quiet = n.querySelector('#gc-enter-quiet');
 
-    function lift() {
-      if (done) return;
-      done = true;
-      var wait = Math.max(0, MIN_SHOW - (Date.now() - born));
+    function offer() {
+      if (ready) return;
+      ready = true;
+      var wait = Math.max(0, MIN_GATE - (Date.now() - born));
       setTimeout(function () {
-        n.classList.add('is--gone');
-        if (window.__gcKickVideos) window.__gcKickVideos();
-        document.documentElement.classList.remove('gc-loading');
-        try { sessionStorage.setItem('gcLoaded', '1'); } catch (e) {}
-        setTimeout(function () { n.remove(); }, 650);
+        n.classList.add('is--ready');
+        btn.disabled = false; quiet.disabled = false;
+        try { btn.focus({ preventScroll: true }); } catch (e) {}
       }, wait);
     }
 
-    // lift when the hero is actually running, or when patience runs out
-    function heroReady() {
-      var v = document.querySelector('.hero_video video');
-      if (!v) return true;                       // no hero on this page
-      return !v.paused && v.currentTime > 0.05;
+    function enter(withSound) {
+      if (done || !ready) return;
+      done = true;
+      try {
+        releaseAnimations();             // un-hide the page and let the intro run
+        startSound(withSound);
+        var v = heroVideo();
+        if (v) {
+          v.muted = true;
+          try { v.currentTime = 0; } catch (e) {}
+          var p = v.play();               // inside the click: always permitted
+          if (p && p.catch) p.catch(function () {});
+        }
+        if (window.__gcKickVideos) window.__gcKickVideos();
+      } finally {
+        releaseAnimations();             // whatever happens, never leave the page frozen
+        n.classList.add('is--gone');
+        document.documentElement.classList.remove('gc-loading');
+        try { sessionStorage.setItem('gcLoaded', '1'); } catch (e) {}
+        setTimeout(function () { n.remove(); }, 700);
+        window.dispatchEvent(new Event('gc:entered'));
+      }
+    }
+
+    btn.addEventListener('click', function (e) { e.stopPropagation(); enter(true); });
+    quiet.addEventListener('click', function (e) { e.stopPropagation(); enter(false); });
+    n.addEventListener('click', function () { enter(true); });       // anywhere on the screen
+    document.addEventListener('keydown', function onKey(e) {
+      if (done) { document.removeEventListener('keydown', onKey); return; }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enter(true); }
+    });
+
+    // ready = page loaded and, where there is a hero, enough video buffered to play
+    function heroBuffered() {
+      var v = heroVideo();
+      return !v || v.readyState >= 3;
     }
     var poll = setInterval(function () {
-      if (document.readyState === 'complete' && heroReady()) {
-        clearInterval(poll); lift();
-      }
-    }, 90);
-    setTimeout(function () { clearInterval(poll); lift(); }, MAX_WAIT);
+      if (document.readyState === 'complete' && heroBuffered()) { clearInterval(poll); offer(); }
+    }, 120);
+    setTimeout(function () { clearInterval(poll); offer(); }, MAX_READY);
   }
 
   // ---------------------------------------------------------------- prompt
@@ -193,7 +278,12 @@
     requestAnimationFrame(function () { a.classList.add('is--in'); });
   }
 
-  function boot() { tier(); loader(); fab(); prompt(); }
+  function boot() {
+    tier(); loader(); fab();
+    // the prompt's clock starts when they are actually looking at the site
+    if (gated) window.addEventListener('gc:entered', prompt, { once: true });
+    else prompt();
+  }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
