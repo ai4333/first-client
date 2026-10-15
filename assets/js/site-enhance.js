@@ -120,10 +120,12 @@
           '<button class="gc_prompt_no">Not now</button>' +
         '</div>';
       document.body.appendChild(w);
+      document.documentElement.classList.add('gc-prompt-open');
       requestAnimationFrame(function () { w.classList.add('is--in'); });
 
       function close(days) {
         snooze(days);
+        document.documentElement.classList.remove('gc-prompt-open');
         w.classList.remove('is--in');
         setTimeout(function () { w.remove(); }, 400);
       }
@@ -165,7 +167,32 @@
     if (weak || reduced) document.documentElement.classList.add('gc-lite');
   }
 
-  function boot() { tier(); loader(); prompt(); }
+  // ------------------------------------------------------- floating action
+  // A small red marker that sits on the page at all times and goes to the
+  // contact form. The header logo scrolls with the page and is a link home,
+  // so it was never doing this job. Hidden on the contact page itself, and
+  // it steps aside when the enquiry prompt is on screen so the two never
+  // stack in the same corner.
+  function fab() {
+    if (/contact/.test(location.pathname)) return;
+    if (document.getElementById('gc-fab')) return;
+
+    var a = document.createElement('a');
+    a.id = 'gc-fab';
+    a.href = 'contact.html';
+    a.setAttribute('aria-label', 'Talk to us about your home');
+    a.innerHTML =
+      '<span class="gc_fab_icon" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">' +
+          '<path d="M4.5 5.5c0 8 6 14 14 14l2.2-3.4-4.2-2.1-1.8 2a14.6 14.6 0 0 1-6.6-6.6l2-1.8L7.9 3.3 4.5 5.5Z"/>' +
+        '</svg>' +
+      '</span>' +
+      '<span class="gc_fab_label">Talk to us</span>';
+    document.body.appendChild(a);
+    requestAnimationFrame(function () { a.classList.add('is--in'); });
+  }
+
+  function boot() { tier(); loader(); fab(); prompt(); }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
