@@ -4020,7 +4020,10 @@ opacity: 1;
      3. Clicking a photograph opens it in the existing lightbox, via a
         raycast. The original had no click behaviour at all.
 =================================================================== -->
-<script type="module">
+<!-- data-taxi-reload: Taxi only re-runs scripts inside the swapped view or
+     carrying this attribute. Without it, arriving here by clicking Portfolio
+     (rather than loading the URL) never ran this, and ALL PHOTOS did nothing. -->
+<script type="module" data-taxi-reload>
 // Singleton: Taxi keeps <body> across in-site navigations, so a second run would
 // add a second overlay and a second WebGL context.
 if (!window.__gcCorridor) {
